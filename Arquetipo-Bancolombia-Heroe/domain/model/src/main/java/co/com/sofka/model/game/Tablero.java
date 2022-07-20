@@ -15,4 +15,5 @@ public class Tablero {
     private Carta carta;
     private Jugador jugador;
     private Juego juego;
+    private Long puntos;
 }
