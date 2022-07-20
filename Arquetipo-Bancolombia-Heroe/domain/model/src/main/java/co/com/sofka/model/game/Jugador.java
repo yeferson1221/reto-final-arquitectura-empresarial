@@ -1,7 +1,6 @@
 package co.com.sofka.model.game;
 
 public class Jugador {
-
     private String id;
     private String turno;
 

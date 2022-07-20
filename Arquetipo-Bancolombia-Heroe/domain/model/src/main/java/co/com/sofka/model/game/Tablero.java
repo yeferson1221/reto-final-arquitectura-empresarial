@@ -13,7 +13,4 @@ public class Tablero {
     private Juego  juego;
     private Puntaje puntaje;
 
-
-
-
 }
