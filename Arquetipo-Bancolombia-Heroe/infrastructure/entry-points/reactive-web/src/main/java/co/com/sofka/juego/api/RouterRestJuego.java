@@ -12,9 +12,10 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class RouterRestJuego {
 
     @Bean
-    public RouterFunction<ServerResponse> routerFunction(HandlerJuego handlerJuego) {
+    public RouterFunction<ServerResponse> routerFunctionJuego(HandlerJuego handlerJuego) {
 
         return route(POST("/api/juego"), handlerJuego::crearJuegoUseCase)
                 .and(route(GET("/api/juego"), handlerJuego::listarJuegoUseCase));
     }
 }
+

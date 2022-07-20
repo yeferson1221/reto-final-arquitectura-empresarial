@@ -11,7 +11,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class RouterRest {
     @Bean
-    public RouterFunction<ServerResponse> routerFunction(Handler handler) {
+    public RouterFunction<ServerResponse> routerFunctionTablero(Handler handler) {
         return route(POST("/api/tablero"), handler::crearTableroUseCase)
                 .and(route(GET("/api/tablero"), handler::listarTableroUseCase));
         // .and(route(GET("/api/usecase/{id}"), handler::listForIdUseCase))

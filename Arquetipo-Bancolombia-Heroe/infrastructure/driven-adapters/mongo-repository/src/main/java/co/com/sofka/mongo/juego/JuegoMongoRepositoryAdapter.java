@@ -4,7 +4,9 @@ import co.com.sofka.model.game.juego.Juego;
 import co.com.sofka.model.game.juego.gateways.JuegoRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class JuegoMongoRepositoryAdapter extends AdapterOperations<Juego, JuegoDocument, String, JuegoMongoDBRepository>
         implements JuegoRepository {
 

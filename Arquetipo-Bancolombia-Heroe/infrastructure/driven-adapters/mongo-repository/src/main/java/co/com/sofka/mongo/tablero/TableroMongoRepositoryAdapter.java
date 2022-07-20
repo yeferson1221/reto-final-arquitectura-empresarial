@@ -5,8 +5,9 @@ import co.com.sofka.model.game.gateways.TableroRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
 
 import org.reactivecommons.utils.ObjectMapper;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class TableroMongoRepositoryAdapter extends AdapterOperations<Tablero, TableroDocument, String, TableroMongoDBRepository>
         implements TableroRepository {
 

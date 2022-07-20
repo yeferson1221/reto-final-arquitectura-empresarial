@@ -12,7 +12,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 @Configuration
 public class RouterRestCarta {
     @Bean
-    public RouterFunction<ServerResponse> routerFunction(HandlerCarta handlerCarta) {
+    public RouterFunction<ServerResponse> routerFunctionCarta(HandlerCarta handlerCarta) {
         return route(POST("/api/carta"), handlerCarta::crearCartaUseCase)
                 .and(route(GET("/api/carta"), handlerCarta::listarGETUseCase));
                // .and(route(GET("/api/usecase/{id}"), handler::listForIdUseCase))

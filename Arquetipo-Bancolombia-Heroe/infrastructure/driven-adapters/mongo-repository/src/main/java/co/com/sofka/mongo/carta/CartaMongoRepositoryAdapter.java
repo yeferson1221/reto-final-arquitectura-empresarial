@@ -5,14 +5,12 @@ import co.com.sofka.model.game.gateways.CartaRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Repository
-public class MongoRepositoryAdapter extends AdapterOperations<Carta, CartaDocument, String, MongoDBRepository>
+public class CartaMongoRepositoryAdapter extends AdapterOperations<Carta, CartaDocument, String, CartaMongoDBRepository>
         implements CartaRepository {
 
-    public MongoRepositoryAdapter(MongoDBRepository repository, ObjectMapper mapper) {
+    public CartaMongoRepositoryAdapter(CartaMongoDBRepository repository, ObjectMapper mapper) {
         /**
          *  Could be use mapper.mapBuilder if your domain model implement builder pattern
          *  super(repository, mapper, d -> mapper.mapBuilder(d,ObjectModel.ObjectModelBuilder.class).build());
