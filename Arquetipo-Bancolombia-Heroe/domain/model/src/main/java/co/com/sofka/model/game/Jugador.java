@@ -9,4 +9,7 @@ public class Jugador {
         this.id = id;
         this.turno = turno;
     }
+
+    public Jugador() {
+    }
 }
