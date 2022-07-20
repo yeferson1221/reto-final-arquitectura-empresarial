@@ -29,5 +29,4 @@ public class HandlerJuego {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(listarJuegoUseCase.listarJuego(), Juego.class);
     }
-
 }
