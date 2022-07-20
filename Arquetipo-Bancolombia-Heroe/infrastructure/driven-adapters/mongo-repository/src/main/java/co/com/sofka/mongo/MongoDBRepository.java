@@ -7,5 +7,5 @@ import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
 import reactor.core.publisher.Flux;
 
 public interface MongoDBRepository extends ReactiveMongoRepository<CartaDocument, String>, ReactiveQueryByExampleExecutor<CartaDocument> {
-    Flux<Carta> findByName(String name);
+   // Flux<Carta> findByName(String name);
 }

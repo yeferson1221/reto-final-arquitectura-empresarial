@@ -1,9 +1,7 @@
 package co.com.sofka.mongo;
 
 import co.com.sofka.model.game.Carta;
-import co.com.sofka.model.game.Tablero;
 import co.com.sofka.model.game.gateways.CartaRepository;
-import co.com.sofka.model.game.gateways.TableroRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
@@ -40,6 +38,11 @@ public class MongoRepositoryAdapter extends AdapterOperations<Carta, CartaDocume
         return null;
     }
 
+    @Override
+    public Flux<Carta> findByName(String name) {
+        return null;
+    }
+
     // @Override
    // public Mono<Carta> update(String id, Carta carta) {
         //carta.setId(id);
@@ -49,8 +52,8 @@ public class MongoRepositoryAdapter extends AdapterOperations<Carta, CartaDocume
      //           .flatMap(element -> Mono.just(pet));
    // }
 
-    @Override
-    public Flux<Carta> findByName(String name){
-        return  repository.findByName(name);
-    }
+   // @Override
+    //public Flux<Carta> findByName(String name){
+      //  return  repository.findByName(name);
+    //}
 }

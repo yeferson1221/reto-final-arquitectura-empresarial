@@ -2,6 +2,7 @@ package co.com.sofka.api;
 
 import co.com.sofka.model.game.Carta;
 import co.com.sofka.usecase.carta.crearcarta.CrearCartaUseCase;
+import co.com.sofka.usecase.carta.listarCarta.ListarCartaUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class Handler {
     private final CrearCartaUseCase crearCartaUseCase;
+    private final ListarCartaUseCase listarCartaUseCase;
 
 
 
@@ -24,6 +26,12 @@ public class Handler {
                 .flatMap(carta -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(crearCartaUseCase.crearCarta(carta), Carta.class));
+    }
+
+    public Mono<ServerResponse> listarGETUseCase(ServerRequest serverRequest) {
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(listarCartaUseCase.listarCarta(), Carta.class);
     }
 
 }
