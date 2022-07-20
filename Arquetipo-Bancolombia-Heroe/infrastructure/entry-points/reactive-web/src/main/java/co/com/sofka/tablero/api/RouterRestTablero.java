@@ -9,11 +9,11 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class RouterRest {
+public class RouterRestTablero {
     @Bean
-    public RouterFunction<ServerResponse> routerFunctionTablero(Handler handler) {
-        return route(POST("/api/tablero"), handler::crearTableroUseCase)
-                .and(route(GET("/api/tablero"), handler::listarTableroUseCase));
+    public RouterFunction<ServerResponse> routerFunctionTablero(HandlerTablero handlerTablero) {
+        return route(POST("/api/tablero"), handlerTablero::crearTableroUseCase)
+                .and(route(GET("/api/tablero"), handlerTablero::listarTableroUseCase));
         // .and(route(GET("/api/usecase/{id}"), handler::listForIdUseCase))
         // .and(route(GET("/api/usecase/nombre/{name}"), handler::listarForNameUseCase))
         // .and(route(DELETE("/api/pet/{id}"), handler::deleteGETUseCase))

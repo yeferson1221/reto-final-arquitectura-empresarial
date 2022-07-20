@@ -7,9 +7,8 @@ import reactor.core.publisher.Mono;
 public interface JugadorRepository {
 
     Mono<Jugador> save(Jugador jugador);
+
     Flux<Jugador> findAll();
-//    Mono<Void> delete(String id);
-//    Mono<Jugador> findById(String id);
-//    Mono<Jugador> update(String id, Jugador jugador);
-//    Flux<Jugador> findByName(String name);
+
+    Mono<Jugador> update(String id, Jugador jugador);
 }

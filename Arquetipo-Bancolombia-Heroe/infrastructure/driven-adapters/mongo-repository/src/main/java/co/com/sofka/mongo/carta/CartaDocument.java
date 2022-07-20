@@ -15,6 +15,6 @@ public class CartaDocument {
     @Id
     private String id;
     private String nombre;
-    private String descripcion;
     private Long valor;
+    private String descripcion;
 }

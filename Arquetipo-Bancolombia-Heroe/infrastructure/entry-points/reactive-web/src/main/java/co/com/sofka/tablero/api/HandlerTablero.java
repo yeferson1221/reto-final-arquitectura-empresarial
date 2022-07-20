@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class Handler {
+public class HandlerTablero {
     private final CrearTableroUseCase crearTableroUseCase;
     private final ListarTableroUseCase listarTableroUseCase;
 
