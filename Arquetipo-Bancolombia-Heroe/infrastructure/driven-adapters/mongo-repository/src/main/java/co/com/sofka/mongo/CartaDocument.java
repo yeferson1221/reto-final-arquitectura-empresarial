@@ -10,10 +10,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PetDocument {
+public class CartaDocument {
     @Id
     private String id;
-    private String name;
-    private String breed;
+    private String nombre;
+    private String descripcion;
+    private Long valor;
 
 }

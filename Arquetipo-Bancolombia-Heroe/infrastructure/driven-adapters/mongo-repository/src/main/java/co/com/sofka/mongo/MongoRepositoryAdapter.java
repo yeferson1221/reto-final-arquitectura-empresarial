@@ -1,6 +1,8 @@
 package co.com.sofka.mongo;
 
+import co.com.sofka.model.game.Carta;
 import co.com.sofka.model.game.Tablero;
+import co.com.sofka.model.game.gateways.CartaRepository;
 import co.com.sofka.model.game.gateways.TableroRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
@@ -9,8 +11,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public class MongoRepositoryAdapter extends AdapterOperations<Tablero, PetDocument, String, MongoDBRepository>
-        implements TableroRepository {
+public class MongoRepositoryAdapter extends AdapterOperations<Carta, CartaDocument, String, MongoDBRepository>
+        implements CartaRepository {
 
     public MongoRepositoryAdapter(MongoDBRepository repository, ObjectMapper mapper) {
         /**
@@ -18,7 +20,7 @@ public class MongoRepositoryAdapter extends AdapterOperations<Tablero, PetDocume
          *  super(repository, mapper, d -> mapper.mapBuilder(d,ObjectModel.ObjectModelBuilder.class).build());
          *  Or using mapper.map with the class of the object model
          */
-        super(repository, mapper, d -> mapper.map(d, Tablero.class));
+        super(repository, mapper, d -> mapper.map(d, Carta.class));
     }
 
 
@@ -34,16 +36,21 @@ public class MongoRepositoryAdapter extends AdapterOperations<Tablero, PetDocume
     }
 
     @Override
-    public Mono<Tablero> update(String id, Tablero pet) {
-        pet.setId(id);
-
-        return repository
-                .save(new PetDocument(pet.getId(), pet.getName(), pet.getBreed()))
-                .flatMap(element -> Mono.just(pet));
+    public Mono<Carta> update(String id, Carta carta) {
+        return null;
     }
 
+    // @Override
+   // public Mono<Carta> update(String id, Carta carta) {
+        //carta.setId(id);
+
+       // return repository
+       //         .save(new CartaDocument(pet.getId(), pet.getName(), pet.getBreed()))
+     //           .flatMap(element -> Mono.just(pet));
+   // }
+
     @Override
-    public Flux<Tablero> findByName(String name){
+    public Flux<Carta> findByName(String name){
         return  repository.findByName(name);
     }
 }
