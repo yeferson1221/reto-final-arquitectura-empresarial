@@ -1,4 +1,4 @@
-package co.com.sofka.api;
+package co.com.sofka.carta.api;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
