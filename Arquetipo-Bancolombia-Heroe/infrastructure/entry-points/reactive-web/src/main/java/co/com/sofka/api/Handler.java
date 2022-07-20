@@ -22,7 +22,6 @@ public class Handler {
 
     public Mono<ServerResponse> crearCartaUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Carta.class)
-                .flatMap(crearCartaUseCase::crearCarta)
                 .flatMap(carta -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(crearCartaUseCase.crearCarta(carta), Carta.class));
