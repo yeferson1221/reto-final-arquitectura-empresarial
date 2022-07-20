@@ -12,13 +12,9 @@ import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class Handler {
+public class HandlerCarta {
     private final CrearCartaUseCase crearCartaUseCase;
     private final ListarCartaUseCase listarCartaUseCase;
-
-
-
-
 
     public Mono<ServerResponse> crearCartaUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Carta.class)

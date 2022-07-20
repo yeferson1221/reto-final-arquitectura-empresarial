@@ -1,16 +1,18 @@
-package co.com.sofka.model.game;
+package co.com.sofka.mongo.carta;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 @Data
-@Builder(toBuilder = true)
-@NoArgsConstructor
 @AllArgsConstructor
-public class Carta {
+@NoArgsConstructor
+public class CartaDocument {
 
+    @Id
     private String id;
     private String nombre;
     private String descripcion;

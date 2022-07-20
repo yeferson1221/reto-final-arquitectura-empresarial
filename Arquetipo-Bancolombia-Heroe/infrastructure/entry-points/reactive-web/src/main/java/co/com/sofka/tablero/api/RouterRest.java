@@ -12,7 +12,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class RouterRest {
     @Bean
     public RouterFunction<ServerResponse> routerFunction(Handler handler) {
-        return route(POST("/api/usecase/tablero"), handler::crearTableroUseCase)
+        return route(POST("/api/tablero"), handler::crearTableroUseCase)
                 .and(route(GET("/api/tablero"), handler::listarTableroUseCase));
         // .and(route(GET("/api/usecase/{id}"), handler::listForIdUseCase))
         // .and(route(GET("/api/usecase/nombre/{name}"), handler::listarForNameUseCase))

@@ -1,4 +1,4 @@
-package co.com.sofka.mongo;
+package co.com.sofka.mongo.juego;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,11 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartaDocument {
+public class JuegoDocument {
+
     @Id
     private String id;
-    private String nombre;
-    private String descripcion;
-    private Long valor;
-
+    private String numeroRonda;
 }

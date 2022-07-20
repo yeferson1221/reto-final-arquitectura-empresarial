@@ -1,4 +1,4 @@
-package co.com.sofka.mongo;
+package co.com.sofka.mongo.carta;
 
 import co.com.sofka.model.game.Carta;
 import co.com.sofka.model.game.gateways.CartaRepository;
@@ -21,39 +21,38 @@ public class MongoRepositoryAdapter extends AdapterOperations<Carta, CartaDocume
         super(repository, mapper, d -> mapper.map(d, Carta.class));
     }
 
-
-    @Override
-    public Mono<Void> delete(String id) {
+//    @Override
+//    public Mono<Void> delete(String id) {
 //        repository.deleteById(id).;
 //        var pet = repository.findById(id)
 //                .flatMap(element -> {
 //                    repository.deleteById(element.getId());
 //                    return Mono.just(new Pet(element.getId(), element.getName(), element.getRaza()));
 //                });
-        return repository.deleteById(id);
-    }
-
-    @Override
-    public Mono<Carta> update(String id, Carta carta) {
-        return null;
-    }
-
-    @Override
-    public Flux<Carta> findByName(String name) {
-        return null;
-    }
-
-    // @Override
-   // public Mono<Carta> update(String id, Carta carta) {
-        //carta.setId(id);
-
-       // return repository
-       //         .save(new CartaDocument(pet.getId(), pet.getName(), pet.getBreed()))
-     //           .flatMap(element -> Mono.just(pet));
-   // }
-
-   // @Override
-    //public Flux<Carta> findByName(String name){
-      //  return  repository.findByName(name);
-    //}
+//        return repository.deleteById(id);
+//    }
+//
+//    @Override
+//    public Mono<Carta> update(String id, Carta carta) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Flux<Carta> findByName(String name) {
+//        return null;
+//    }
+//
+//     @Override
+//    public Mono<Carta> update(String id, Carta carta) {
+//        carta.setId(id);
+//
+//        return repository
+//                .save(new CartaDocument(pet.getId(), pet.getName(), pet.getBreed()))
+//                .flatMap(element -> Mono.just(pet));
+//    }
+//
+//    @Override
+//    public Flux<Carta> findByName(String name){
+//        return  repository.findByName(name);
+//    }
 }

@@ -1,4 +1,4 @@
-package co.com.sofka.model.game;
+package co.com.sofka.model.game.juego;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Juego {
+
     private String id;
-    private String nombre;
-    private Long numeroPartida;
-    private Long valor;
+    private String numeroRonda;
 }

@@ -1,0 +1,20 @@
+package co.com.sofka.juego.api;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.ServerResponse;
+
+import static org.springframework.web.reactive.function.server.RequestPredicates.*;
+import static org.springframework.web.reactive.function.server.RouterFunctions.route;
+
+@Configuration
+public class RouterRestJuego {
+
+    @Bean
+    public RouterFunction<ServerResponse> routerFunction(HandlerJuego handlerJuego) {
+
+        return route(POST("/api/juego"), handlerJuego::crearJuegoUseCase)
+                .and(route(GET("/api/juego"), handlerJuego::listarJuegoUseCase));
+    }
+}
