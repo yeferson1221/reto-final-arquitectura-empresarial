@@ -1,7 +1,7 @@
 package co.com.sofka.mongo.tablero;
 
-import co.com.sofka.model.game.Tablero;
-import co.com.sofka.model.game.gateways.TableroRepository;
+import co.com.sofka.model.tablero.Tablero;
+import co.com.sofka.model.tablero.gateways.TableroRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
 
 import org.reactivecommons.utils.ObjectMapper;

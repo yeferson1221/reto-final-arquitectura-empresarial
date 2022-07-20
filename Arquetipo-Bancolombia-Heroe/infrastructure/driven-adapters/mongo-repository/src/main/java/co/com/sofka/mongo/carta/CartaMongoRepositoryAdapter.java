@@ -1,7 +1,7 @@
 package co.com.sofka.mongo.carta;
 
-import co.com.sofka.model.game.Carta;
-import co.com.sofka.model.game.gateways.CartaRepository;
+import co.com.sofka.model.carta.Carta;
+import co.com.sofka.model.carta.gateways.CartaRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;

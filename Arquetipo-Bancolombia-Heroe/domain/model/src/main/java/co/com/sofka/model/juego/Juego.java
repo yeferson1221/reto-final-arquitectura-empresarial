@@ -1,19 +1,15 @@
-package co.com.sofka.model.game;
-import co.com.sofka.model.game.juego.Juego;
+package co.com.sofka.model.juego;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tablero {
+public class Juego {
     private String id;
-    private Carta carta;
-    private Jugador jugador;
-    private Juego juego;
-    private Long puntos;
+    private String numeroRonda;
 }

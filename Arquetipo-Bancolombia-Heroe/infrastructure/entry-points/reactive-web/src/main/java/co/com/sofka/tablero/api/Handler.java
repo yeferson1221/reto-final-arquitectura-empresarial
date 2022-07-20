@@ -1,6 +1,6 @@
 package co.com.sofka.tablero.api;
 
-import co.com.sofka.model.game.Tablero;
+import co.com.sofka.model.tablero.Tablero;
 import co.com.sofka.usecase.tablero.creartablero.CrearTableroUseCase;
 import co.com.sofka.usecase.tablero.listartablero.ListarTableroUseCase;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +15,6 @@ import reactor.core.publisher.Mono;
 public class Handler {
     private final CrearTableroUseCase crearTableroUseCase;
     private final ListarTableroUseCase listarTableroUseCase;
-
-
-
-
 
     public Mono<ServerResponse> crearTableroUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Tablero.class)

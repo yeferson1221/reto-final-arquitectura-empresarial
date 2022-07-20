@@ -1,6 +1,6 @@
 package co.com.sofka.carta.api;
 
-import co.com.sofka.model.game.Carta;
+import co.com.sofka.model.carta.Carta;
 import co.com.sofka.usecase.carta.crearcarta.CrearCartaUseCase;
 import co.com.sofka.usecase.carta.listarCarta.ListarCartaUseCase;
 import lombok.RequiredArgsConstructor;

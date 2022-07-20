@@ -1,6 +1,6 @@
 package co.com.sofka.usecase.tablero.creartablero;
-import co.com.sofka.model.game.Tablero;
-import co.com.sofka.model.game.gateways.TableroRepository;
+import co.com.sofka.model.tablero.Tablero;
+import co.com.sofka.model.tablero.gateways.TableroRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 

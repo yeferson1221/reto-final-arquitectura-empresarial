@@ -1,9 +1,7 @@
 package co.com.sofka.usecase.jugador.createjugador;
 
-import co.com.sofka.model.game.Carta;
-import co.com.sofka.model.game.Jugador;
-import co.com.sofka.model.game.gateways.CartaRepository;
-import co.com.sofka.model.game.gateways.JugadorRepository;
+import co.com.sofka.model.jugador.Jugador;
+import co.com.sofka.model.jugador.gateways.JugadorRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 

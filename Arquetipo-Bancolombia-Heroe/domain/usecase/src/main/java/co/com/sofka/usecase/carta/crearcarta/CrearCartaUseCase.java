@@ -1,7 +1,7 @@
 package co.com.sofka.usecase.carta.crearcarta;
 
-import co.com.sofka.model.game.Carta;
-import co.com.sofka.model.game.gateways.CartaRepository;
+import co.com.sofka.model.carta.Carta;
+import co.com.sofka.model.carta.gateways.CartaRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 

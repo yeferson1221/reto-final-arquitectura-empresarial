@@ -1,7 +1,7 @@
 package co.com.sofka.usecase.juego.crearjuego;
 
-import co.com.sofka.model.game.juego.Juego;
-import co.com.sofka.model.game.juego.gateways.JuegoRepository;
+import co.com.sofka.model.juego.Juego;
+import co.com.sofka.model.juego.gateways.JuegoRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
