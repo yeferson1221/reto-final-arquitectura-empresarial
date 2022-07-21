@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Juego {
+
     private String id;
     private String numeroRonda;
     private Jugador jugador;

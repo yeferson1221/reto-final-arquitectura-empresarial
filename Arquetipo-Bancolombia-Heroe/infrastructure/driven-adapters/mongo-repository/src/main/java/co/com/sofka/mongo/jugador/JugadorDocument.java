@@ -20,5 +20,5 @@ public class JugadorDocument {
     private String nombre;
     private Long puntos;
     private String turno;
-    //private List<Carta> cartas;
+    private List<Carta> cartas;
 }

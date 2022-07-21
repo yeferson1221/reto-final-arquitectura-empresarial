@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tablero {
+
     private String id;
     private Carta carta;
     private Jugador jugador;
