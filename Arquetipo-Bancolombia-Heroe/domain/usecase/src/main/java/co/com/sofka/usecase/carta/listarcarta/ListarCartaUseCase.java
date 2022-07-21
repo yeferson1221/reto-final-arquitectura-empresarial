@@ -1,4 +1,4 @@
-package co.com.sofka.usecase.carta.listarCarta;
+package co.com.sofka.usecase.carta.listarcarta;
 
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.carta.gateways.CartaRepository;

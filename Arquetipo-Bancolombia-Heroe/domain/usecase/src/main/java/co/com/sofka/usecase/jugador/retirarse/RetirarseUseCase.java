@@ -1,16 +1,18 @@
-package co.com.sofka.usecase.jugador.apostarcarta;
+package co.com.sofka.usecase.jugador.retirarse;
 
+import co.com.sofka.model.juego.Juego;
 import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class ApostarCartaUseCase {
+public class RetirarseUseCase {
 
     private final JugadorRepository jugadorRepository;
 
-    public Mono<Jugador> apostarCarta(String id, Jugador jugador) {
-        return jugadorRepository.apostarCarta(id, jugador);
+    public Mono<Jugador> retirarse(String id, Juego juego) {
+        return jugadorRepository.retirarse(id, juego);
     }
+
 }

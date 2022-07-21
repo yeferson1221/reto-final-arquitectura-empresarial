@@ -13,5 +13,4 @@ public class ListarJugadorUseCase {
     public Flux<Jugador> listarJugador() {
         return repository.findAll();
     }
-
 }
