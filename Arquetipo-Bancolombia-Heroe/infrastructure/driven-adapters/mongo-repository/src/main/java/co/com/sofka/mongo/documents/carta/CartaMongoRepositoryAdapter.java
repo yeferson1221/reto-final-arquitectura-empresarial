@@ -1,9 +1,8 @@
-package co.com.sofka.mongo.carta;
+package co.com.sofka.mongo.documents.carta;
 
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.carta.gateways.CartaRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
-import co.com.sofka.mongo.jugador.JugadorDocument;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
