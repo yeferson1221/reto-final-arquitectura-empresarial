@@ -1,6 +1,7 @@
 package co.com.sofka.mongo.jugador;
 
 import co.com.sofka.model.carta.Carta;
+import co.com.sofka.model.mazo.Mazo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class JugadorDocument {
     @Id
     private String id;
     private String nombre;
-    private Long puntos;
+    private Mazo mazo;
     private String turno;
-    private List<Carta> cartas;
+    private Integer puntaje;
 }

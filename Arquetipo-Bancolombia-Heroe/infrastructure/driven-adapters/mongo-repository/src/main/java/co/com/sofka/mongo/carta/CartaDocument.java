@@ -16,5 +16,6 @@ public class CartaDocument {
     private String id;
     private String nombre;
     private Long valor;
-    private String descripcion;
+    private String uri;
+    private Boolean esOculta;
 }

@@ -14,10 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Jugador {
-
     private String id;
     private String nombre;
     private Mazo mazo;
     private String turno;
-    //private List<Carta> cartas;
+    private Integer puntaje;
 }

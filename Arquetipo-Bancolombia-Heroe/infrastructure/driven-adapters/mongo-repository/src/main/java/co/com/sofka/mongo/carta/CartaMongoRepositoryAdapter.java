@@ -25,42 +25,7 @@ public class CartaMongoRepositoryAdapter extends AdapterOperations<Carta, CartaD
     public Mono<Carta> update(String id, Carta carta) {
         carta.setId(id);
         return repository
-                .save(new CartaDocument(carta.getId(), carta.getNombre(), carta.getValor(), carta.getDescripcion()))
+                .save(new CartaDocument(carta.getId(), carta.getNombre(), carta.getValor(), carta.getUri(), carta.getEsOculta()))
                 .flatMap(element -> Mono.just(carta));
     }
-
-//    @Override
-//    public Mono<Void> delete(String id) {
-//        repository.deleteById(id).;
-//        var pet = repository.findById(id)
-//                .flatMap(element -> {
-//                    repository.deleteById(element.getId());
-//                    return Mono.just(new Pet(element.getId(), element.getName(), element.getRaza()));
-//                });
-//        return repository.deleteById(id);
-//    }
-//
-//    @Override
-//    public Mono<Carta> update(String id, Carta carta) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Flux<Carta> findByName(String name) {
-//        return null;
-//    }
-//
-//     @Override
-//    public Mono<Carta> update(String id, Carta carta) {
-//        carta.setId(id);
-//
-//        return repository
-//                .save(new CartaDocument(pet.getId(), pet.getName(), pet.getBreed()))
-//                .flatMap(element -> Mono.just(pet));
-//    }
-//
-//    @Override
-//    public Flux<Carta> findByName(String name){
-//        return  repository.findByName(name);
-//    }
 }

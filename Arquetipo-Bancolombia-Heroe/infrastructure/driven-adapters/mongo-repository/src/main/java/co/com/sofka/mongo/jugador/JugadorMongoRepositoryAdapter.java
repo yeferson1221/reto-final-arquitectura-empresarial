@@ -21,7 +21,7 @@ public class JugadorMongoRepositoryAdapter extends AdapterOperations<Jugador, Ju
         jugador.setId(id);
 
         return repository
-                .save(new JugadorDocument(jugador.getId(), jugador.getNombre(), jugador.getPuntos(), jugador.getTurno(), jugador.getCartas()))
+                .save(new JugadorDocument(jugador.getId(), jugador.getNombre(),jugador.getMazo(), jugador.getTurno(), jugador.getPuntaje()))
                 .flatMap(element -> Mono.just(jugador));
     }
 
@@ -34,7 +34,7 @@ public class JugadorMongoRepositoryAdapter extends AdapterOperations<Jugador, Ju
     public Mono<Jugador> apostarCarta(String id, Jugador jugador) {
         jugador.setId(id);
         return repository
-                .save(new JugadorDocument(jugador.getId(), jugador.getNombre(), jugador.getPuntos(), jugador.getTurno(), jugador.getCartas()))
+                .save(new JugadorDocument(jugador.getId(), jugador.getNombre(),jugador.getMazo(), jugador.getTurno(), jugador.getPuntaje()))
                 .flatMap(x -> Mono.just(jugador));
     }
 }
