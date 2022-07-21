@@ -12,6 +12,7 @@ public class CrearMazoUseCase {
     private final MazoRepository repository;
     public Mono<Mazo> crearMazo( Mazo mazo){
         return repository.save(mazo);
+
     }
 
 }
