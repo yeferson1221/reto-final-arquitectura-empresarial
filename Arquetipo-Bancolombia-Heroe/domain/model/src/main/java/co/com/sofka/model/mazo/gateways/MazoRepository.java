@@ -5,6 +5,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface MazoRepository {
-    Mono <Mazo> save(Mazo mazo);
-    Flux <Mazo> finAll();
+
+    Mono<Mazo> save(Mazo mazo);
+    Flux<Mazo> findAll();
 }
