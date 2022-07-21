@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder(toBuilder = true)
 @NoArgsConstructor
@@ -15,8 +17,8 @@ import lombok.NoArgsConstructor;
 public class Juego {
 
     private String id;
-    private String numeroRonda;
-    private Jugador jugador;
-    private Carta carta;
+    private String ronda;
+    private List<Jugador> jugadore;
     private Tablero tablero;
+    private Jugador ganador;
 }
