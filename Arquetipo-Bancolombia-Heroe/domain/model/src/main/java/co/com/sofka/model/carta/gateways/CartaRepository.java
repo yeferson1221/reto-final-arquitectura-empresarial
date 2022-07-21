@@ -9,4 +9,6 @@ public interface CartaRepository {
     Mono<Carta> save(Carta carta);
 
     Flux<Carta> findAll();
+
+    Mono<Carta> update(String id, Carta carta);
 }

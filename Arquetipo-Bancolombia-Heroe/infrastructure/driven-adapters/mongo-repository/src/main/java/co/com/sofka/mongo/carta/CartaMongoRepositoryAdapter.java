@@ -3,8 +3,10 @@ package co.com.sofka.mongo.carta;
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.carta.gateways.CartaRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
+import co.com.sofka.mongo.jugador.JugadorDocument;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 @Repository
 public class CartaMongoRepositoryAdapter extends AdapterOperations<Carta, CartaDocument, String, CartaMongoDBRepository>
@@ -17,6 +19,14 @@ public class CartaMongoRepositoryAdapter extends AdapterOperations<Carta, CartaD
          *  Or using mapper.map with the class of the object model
          */
         super(repository, mapper, d -> mapper.map(d, Carta.class));
+    }
+
+    @Override
+    public Mono<Carta> update(String id, Carta carta) {
+        carta.setId(id);
+        return repository
+                .save(new CartaDocument(carta.getId(), carta.getNombre(), carta.getValor(), carta.getDescripcion()))
+                .flatMap(element -> Mono.just(carta));
     }
 
 //    @Override
