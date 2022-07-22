@@ -10,7 +10,5 @@ public class ListarMazoUseCase {
 
     private final MazoRepository mazoRepository;
 
-    public Flux<Mazo> listarMazo() {
-        return mazoRepository.findAll();
-    }
+
 }

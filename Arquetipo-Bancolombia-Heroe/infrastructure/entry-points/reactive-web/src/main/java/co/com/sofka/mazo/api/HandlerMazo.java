@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 public class HandlerMazo {
 
     private final CrearMazoUseCase crearMazoUseCase;
-    private final ListarMazoUseCase listarMazoUseCase;
+
 
     public Mono<ServerResponse> crearMazoUseCase(ServerRequest serverRequest) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
@@ -27,6 +27,6 @@ public class HandlerMazo {
     public Mono<ServerResponse> listarMazoUseCase(ServerRequest serverRequest) {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(listarMazoUseCase.listarMazo(), Mazo.class);
+                .body(crearMazoUseCase.listarMazo(), Mazo.class);
     }
 }
