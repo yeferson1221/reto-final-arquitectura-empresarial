@@ -8,7 +8,9 @@ import reactor.core.publisher.Mono;
 public interface TableroRepository {
 
     Mono<Tablero> save(Tablero tablero);
+
     Flux<Tablero> findAll();
 
-    Mono<Tablero> mostrarGanador(String id, Jugador jugador);
+    Mono<Tablero> mostrarGanadorJuego(String id, Jugador jugador);
+    Mono<Tablero> mostrarGanadorRonda(String id, Jugador jugador);
 }

@@ -8,7 +8,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class CrearTableroUseCase {
+public class TableroUseCase {
     private final TableroRepository repository;
 
     public Mono<Tablero> crearTablero(Tablero tablero) {
@@ -19,7 +19,7 @@ public class CrearTableroUseCase {
         return repository.findAll();
     }
 
-    public Mono<Tablero> mostrarGanador(String id, Jugador jugador) {
-        return repository.mostrarGanador(id, jugador);
+    public Mono<Tablero> mostrarGanadorJuego(String id, Jugador jugador) {
+        return repository.mostrarGanadorJuego(id, jugador);
     }
 }
