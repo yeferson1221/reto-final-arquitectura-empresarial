@@ -1,8 +1,7 @@
 package co.com.sofka.tablero.api;
 
 import co.com.sofka.model.tablero.Tablero;
-import co.com.sofka.usecase.tablero.creartablero.CrearTableroUseCase;
-import co.com.sofka.usecase.tablero.listartablero.ListarTableroUseCase;
+import co.com.sofka.usecase.tablero.CrearTableroUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
