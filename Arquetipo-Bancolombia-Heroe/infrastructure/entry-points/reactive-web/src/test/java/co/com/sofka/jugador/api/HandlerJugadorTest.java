@@ -59,7 +59,6 @@ class HandlerJugadorTest {
         Jugador jugador = Jugador.builder()
                 .id("123")
                 .nombre("Yisus")
-                .puntos(0L)
                 .turno("1")
                 .build();
 
