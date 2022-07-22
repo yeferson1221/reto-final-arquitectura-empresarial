@@ -15,6 +15,6 @@ import java.util.List;
 public class Mazo {
 
     private String id;
-    private List<Carta> mazos;
+    private List<Carta> mazo;
     private Integer cantidad;
 }

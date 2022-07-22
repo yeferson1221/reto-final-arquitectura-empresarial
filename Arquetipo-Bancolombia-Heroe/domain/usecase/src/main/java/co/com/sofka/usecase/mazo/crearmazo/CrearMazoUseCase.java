@@ -12,13 +12,15 @@ import java.util.Collections;
 public class CrearMazoUseCase {
     private final CartaRepository cartaRepository;
     private final MazoRepository mazoRepository;
+
     public Mono<Mazo> crearMazo() {
         return cartaRepository.findAll() // nos d flux de cartas
                 .collectList() // mono de lista de cartas
                 .map(cartas -> {
                     Collections.shuffle(cartas); // lo que hago es mapear  se aplica shuffle barajar
-                    return cartas;}) // retornar ordenado
-                .map(cartas -> cartas.subList(0,4)) // traigame solo 5 utilizando metodo sublist
-                .map(cartas -> Mazo.builder().mazos(cartas).build()); // construir un mazo
+                    return cartas;
+                }) // retornar ordenado
+                .map(cartas -> cartas.subList(0, 5)) // traigame solo 5 utilizando metodo sublist
+                .map(cartas -> Mazo.builder().mazo(cartas).build()); // construir un mazo
     }
 }

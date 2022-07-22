@@ -23,4 +23,10 @@ public class HandlerMazo {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(crearMazoUseCase.crearMazo(), Mazo.class);
     }
+
+    public Mono<ServerResponse> listarMazoUseCase(ServerRequest serverRequest) {
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(listarMazoUseCase.listarMazo(), Mazo.class);
+    }
 }
