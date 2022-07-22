@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 public class HandlerJuego {
 
     private final CrearJuegoUseCase crearJuegoUseCase;
-    private final ListarJuegoUseCase listarJuegoUseCase;
+
 
     public Mono<ServerResponse> crearJuegoUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Juego.class)
@@ -27,6 +27,6 @@ public class HandlerJuego {
     public Mono<ServerResponse> listarJuegoUseCase(ServerRequest serverRequest) {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(listarJuegoUseCase.listarJuego(), Juego.class);
+                .body(crearJuegoUseCase.listarJuego(), Juego.class);
     }
 }

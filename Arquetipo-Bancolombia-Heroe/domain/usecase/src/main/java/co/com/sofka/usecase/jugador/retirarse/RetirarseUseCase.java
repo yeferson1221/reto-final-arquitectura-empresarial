@@ -11,8 +11,5 @@ public class RetirarseUseCase {
 
     private final JugadorRepository jugadorRepository;
 
-    public Mono<Jugador> retirarse(String id, Juego juego) {
-        return jugadorRepository.retirarse(id, juego);
-    }
 
 }

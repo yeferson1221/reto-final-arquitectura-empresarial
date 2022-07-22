@@ -10,8 +10,6 @@ public class ActualizarJugadorUseCase {
 
     private final JugadorRepository jugadorRepository;
 
-    public Mono<Jugador> actualizarJugador(String id, Jugador jugador) {
-        return jugadorRepository.update(id, jugador);
-    }
+
 
 }

@@ -10,7 +10,5 @@ public class ListarJugadorUseCase {
 
     private final JugadorRepository repository;
 
-    public Flux<Jugador> listarJugador() {
-        return repository.findAll();
-    }
+
 }
