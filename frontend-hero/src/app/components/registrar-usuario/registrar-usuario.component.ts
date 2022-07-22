@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FirebaseCodeErrorService } from 'src/app/services/firebase-code-error.service';
 //rutas creadas
 import { Jugador } from '../models/jugador';
-import { JugadorService } from 'src/app/services/jugador.service';
+import { JugadorService } from '../../services/jugador.service';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -23,7 +23,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private firebaseError: FirebaseCodeErrorService,
-    private serviceJugador: JugadorService
+    private _serviceJugador: JugadorService
   ) {
     this.registrarUsuario = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,7 +34,21 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  registrarJugador() {
+  registrar() {
+
+    const JUGADOR: Jugador = {
+      nombre: this.registrarUsuario.get('email')?.value,
+      mazo: this.registrarUsuario.get('n')?.value,
+      turno: this.registrarUsuario.get('null')?.value,
+      puntaje: this.registrarUsuario.get('null')?.value,
+    }
+
+    this._serviceJugador.guardarJugador(JUGADOR).subscribe(data => {
+    }, error => {
+      console.log(error);
+      this.registrarUsuario.reset();
+    })
+   
     const email = this.registrarUsuario.value.email;
     const password = this.registrarUsuario.value.password;
     const repetirPassowrd = this.registrarUsuario.value.repetirPassword;
@@ -53,6 +67,7 @@ export class RegistrarUsuarioComponent implements OnInit {
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         this.verificarCorreo();
+
       })
       .catch((error) => {
         this.loading = false;
@@ -71,4 +86,8 @@ export class RegistrarUsuarioComponent implements OnInit {
         this.router.navigate(['/login']);
       });
   }
+
+ 
+
+
 }

@@ -14,18 +14,18 @@ export class DashboardComponent implements OnInit {
       private router: Router) { }
 
   ngOnInit(): void {
-    this.afAuth.currentUser.then(user => {
-      if(user && user.emailVerified) {
-        this.dataUser = user;
-        console.log(user)
-      } else {
-        this.router.navigate(['/login']);
-      }
-    })
+    // this.afAuth.currentUser.then(user => {
+    //   if(user && user.emailVerified) {
+    //     this.dataUser = user;
+    //     console.log(user)
+    //   } else {
+    //     this.router.navigate(['/login']);
+    //   }
+    // })
   }
 
-  logOut() {
-    this.afAuth.signOut().then(() => this.router.navigate(['/login']));
-  }
+  // logOut() {
+  //   this.afAuth.signOut().then(() => this.router.navigate(['/login']));
+  // }
 
 }
