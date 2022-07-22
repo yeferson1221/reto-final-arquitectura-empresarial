@@ -7,7 +7,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class CrearCartaUseCase {
+public class CartaUseCase {
     private final CartaRepository repository;
 
     public Mono<Carta> crearCarta(Carta carta) {

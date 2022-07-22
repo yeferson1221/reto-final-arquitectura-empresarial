@@ -3,7 +3,7 @@ package test;
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.carta.gateways.CartaRepository;
 import co.com.sofka.model.mazo.gateways.MazoRepository;
-import co.com.sofka.usecase.mazo.crearmazo.CrearMazoUseCase;
+import co.com.sofka.usecase.mazo.MazoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,11 +19,11 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 
-class CrearMazoUseCaseTest {
+class MazoUseCaseTest {
 
 
     @InjectMocks
-    private CrearMazoUseCase useCaseTest;
+    private MazoUseCase useCaseTest;
 
     @Mock
     private CartaRepository cartaRepository;

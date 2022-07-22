@@ -1,4 +1,4 @@
-package co.com.sofka.usecase.mazo.crearmazo;
+package co.com.sofka.usecase.mazo;
 
 import co.com.sofka.model.carta.gateways.CartaRepository;
 import co.com.sofka.model.mazo.Mazo;
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 import java.util.Collections;
 
 @RequiredArgsConstructor
-public class CrearMazoUseCase {
+public class MazoUseCase {
     private final CartaRepository cartaRepository;
     private final MazoRepository mazoRepository;
 

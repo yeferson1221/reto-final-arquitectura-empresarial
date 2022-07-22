@@ -3,7 +3,7 @@ package co.com.sofka.jugador.api;
 
 import co.com.sofka.model.jugador.Jugador;
 
-import co.com.sofka.usecase.jugador.CrearJugadorUseCase;
+import co.com.sofka.usecase.jugador.JugadorUseCase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 class HandlerJugadorTest {
 
     @Mock
-    private  CrearJugadorUseCase crearJudadorUseCase;
+    private JugadorUseCase crearJudadorUseCase;
 
 
     //permite simular una peticion

@@ -1,7 +1,7 @@
 package co.com.sofka.carta.api;
 
 import co.com.sofka.model.carta.Carta;
-import co.com.sofka.usecase.carta.CrearCartaUseCase;
+import co.com.sofka.usecase.carta.CartaUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class HandlerCarta {
-    private final CrearCartaUseCase crearCartaUseCase;
+    private final CartaUseCase crearCartaUseCase;
 
 
     public Mono<ServerResponse> crearCartaUseCase(ServerRequest serverRequest) {
