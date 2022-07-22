@@ -15,17 +15,9 @@ public class HandlerJuego {
 
     private final CrearJuegoUseCase crearJuegoUseCase;
 
-
     public Mono<ServerResponse> crearJuegoUseCase(ServerRequest serverRequest) {
-        return serverRequest.bodyToMono(Juego.class)
-                .flatMap(juego -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(crearJuegoUseCase.crearJuego(juego), Juego.class));
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(crearJuegoUseCase.crearJuego(), Juego.class);
     }
 
-    public Mono<ServerResponse> listarJuegoUseCase(ServerRequest serverRequest) {
-        return ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(crearJuegoUseCase.listarJuego(), Juego.class);
-    }
 }
