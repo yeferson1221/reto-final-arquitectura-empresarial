@@ -1,4 +1,4 @@
-package co.com.sofka.usecase.jugador.crearjugador;
+package co.com.sofka.usecase.jugador;
 
 import co.com.sofka.model.juego.Juego;
 import co.com.sofka.model.jugador.Jugador;

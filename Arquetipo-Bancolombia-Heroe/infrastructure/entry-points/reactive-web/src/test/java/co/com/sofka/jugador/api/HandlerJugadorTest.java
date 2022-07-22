@@ -3,21 +3,18 @@ package co.com.sofka.jugador.api;
 
 import co.com.sofka.model.jugador.Jugador;
 
-import co.com.sofka.usecase.jugador.crearjugador.CrearJugadorUseCase;
+import co.com.sofka.usecase.jugador.CrearJugadorUseCase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 

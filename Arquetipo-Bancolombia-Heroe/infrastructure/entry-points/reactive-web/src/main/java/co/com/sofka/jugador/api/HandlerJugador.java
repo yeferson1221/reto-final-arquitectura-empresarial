@@ -1,7 +1,7 @@
 package co.com.sofka.jugador.api;
 
 import co.com.sofka.model.jugador.Jugador;
-import co.com.sofka.usecase.jugador.crearjugador.CrearJugadorUseCase;
+import co.com.sofka.usecase.jugador.CrearJugadorUseCase;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

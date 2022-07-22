@@ -1,7 +1,7 @@
 package co.com.sofka.juego.api;
 
 import co.com.sofka.model.juego.Juego;
-import co.com.sofka.usecase.juego.crearjuego.CrearJuegoUseCase;
+import co.com.sofka.usecase.juego.JuegoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class HandlerJuego {
 
-    private final CrearJuegoUseCase crearJuegoUseCase;
+    private final JuegoUseCase crearJuegoUseCase;
 
     public Mono<ServerResponse> crearJuegoUseCase(ServerRequest serverRequest) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
