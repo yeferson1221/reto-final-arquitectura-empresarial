@@ -1,5 +1,6 @@
 package co.com.sofka.juego.api;
 
+import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.juego.Juego;
 import co.com.sofka.usecase.juego.crearjuego.CrearJuegoUseCase;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -20,4 +22,7 @@ public class HandlerJuego {
                 .body(crearJuegoUseCase.crearJuego(), Juego.class);
     }
 
+    public Flux<Carta> pasarCartasApostadas(ServerRequest serverRequest) {
+        return crearJuegoUseCase.pasarCartasApostadas();
+    }
 }

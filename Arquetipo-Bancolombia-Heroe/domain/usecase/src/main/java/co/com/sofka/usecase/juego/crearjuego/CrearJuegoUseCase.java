@@ -1,5 +1,6 @@
 package co.com.sofka.usecase.juego.crearjuego;
 
+import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.juego.Juego;
 import co.com.sofka.model.juego.gateways.JuegoRepository;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
@@ -18,12 +19,11 @@ public class CrearJuegoUseCase {
 
     public Mono<Juego> crearJuego() {
 
-        return jugadorRepository.findAll()
-                .collectList()
-                .map(jugador -> {
+        return jugadorRepository.findAll().collectList().map(jugador -> {
                     Collections.shuffle(jugador); // lo que hago es mapear  se aplica shuffle barajar
-                    return jugador;}) // retornar ordenado
-                .map(jugador -> jugador.subList(0,4)) // traigame solo 5 utilizando metodo sublist
+                    return jugador;
+                }) // retornar ordenado
+                .map(jugador -> jugador.subList(0, 4)) // traigame solo 5 utilizando metodo sublist
                 .map(jugador -> Juego.builder().jugadores(jugador).build());
     }
 
@@ -31,10 +31,12 @@ public class CrearJuegoUseCase {
         return this.juegoRepository.save(juego);
     }
 
-
-
     public Flux<Juego> listarJuego() {
         return juegoRepository.findAll();
+    }
+
+    public Flux<Carta> pasarCartasApostadas() {
+        return juegoRepository.pasarCartasApostadas();
     }
 
 }

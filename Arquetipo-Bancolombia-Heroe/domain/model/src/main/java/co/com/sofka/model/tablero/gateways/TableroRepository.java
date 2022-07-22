@@ -12,5 +12,6 @@ public interface TableroRepository {
     Flux<Tablero> findAll();
 
     Mono<Tablero> mostrarGanadorJuego(String id, Jugador jugador);
+
     Mono<Tablero> mostrarGanadorRonda(String id, Jugador jugador);
 }

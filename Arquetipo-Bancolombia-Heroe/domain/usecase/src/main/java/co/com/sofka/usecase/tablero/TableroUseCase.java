@@ -22,4 +22,8 @@ public class TableroUseCase {
     public Mono<Tablero> mostrarGanadorJuego(String id, Jugador jugador) {
         return repository.mostrarGanadorJuego(id, jugador);
     }
+
+    public Mono<Tablero> mostrarGanadorRonda(String id, Jugador jugador) {
+        return repository.mostrarGanadorRonda(id, jugador);
+    }
 }
