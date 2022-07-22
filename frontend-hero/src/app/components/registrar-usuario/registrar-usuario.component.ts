@@ -4,6 +4,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FirebaseCodeErrorService } from 'src/app/services/firebase-code-error.service';
+//rutas creadas
+import { Jugador } from '../models/jugador';
+import { JugadorService } from 'src/app/services/jugador.service';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -19,7 +22,8 @@ export class RegistrarUsuarioComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private toastr: ToastrService,
     private router: Router,
-    private firebaseError: FirebaseCodeErrorService
+    private firebaseError: FirebaseCodeErrorService,
+    private serviceJugador: JugadorService
   ) {
     this.registrarUsuario = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -30,7 +34,7 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  registrar() {
+  registrarJugador() {
     const email = this.registrarUsuario.value.email;
     const password = this.registrarUsuario.value.password;
     const repetirPassowrd = this.registrarUsuario.value.repetirPassword;
