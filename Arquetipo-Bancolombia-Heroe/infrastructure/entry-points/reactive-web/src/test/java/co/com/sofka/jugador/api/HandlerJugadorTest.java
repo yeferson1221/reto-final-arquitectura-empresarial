@@ -1,11 +1,10 @@
 package co.com.sofka.jugador.api;
 
-import co.com.sofka.model.carta.Carta;
+
 import co.com.sofka.model.jugador.Jugador;
-import co.com.sofka.usecase.jugador.actualizarjugador.ActualizarJugadorUseCase;
-import co.com.sofka.usecase.jugador.apostarcarta.ApostarCartaUseCase;
+
 import co.com.sofka.usecase.jugador.crearjugador.CrearJugadorUseCase;
-import co.com.sofka.usecase.jugador.listarjugador.ListarJugadorUseCase;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -26,12 +25,7 @@ class HandlerJugadorTest {
 
     @Mock
     private  CrearJugadorUseCase crearJudadorUseCase;
-    @Mock
-    private  ListarJugadorUseCase listarJugadorUseCase;
-    @Mock
-    private  ActualizarJugadorUseCase actualizarJugadorUseCase;
-    @Mock
-    private  ApostarCartaUseCase apostarCartaUseCase;
+
 
     //permite simular una peticion
     private WebTestClient client;
@@ -41,8 +35,7 @@ class HandlerJugadorTest {
         //se crean los mocks
         MockitoAnnotations.openMocks(this);
 
-        HandlerJugador handler =new HandlerJugador( crearJudadorUseCase, listarJugadorUseCase,
-                actualizarJugadorUseCase,apostarCartaUseCase);
+        HandlerJugador handler =new HandlerJugador( crearJudadorUseCase);
                 RouterRestJugador router = new RouterRestJugador();
 
         //simulacion de peticion a handler por medio del router
