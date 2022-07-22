@@ -70,8 +70,6 @@ class HandlerJugadorTest {
                 .expectBody(Jugador.class)
                 .isEqualTo(jugador);
 
-
-
     }
 
     @Test
