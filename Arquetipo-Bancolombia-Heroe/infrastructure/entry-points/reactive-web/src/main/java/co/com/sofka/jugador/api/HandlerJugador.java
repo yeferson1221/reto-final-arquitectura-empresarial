@@ -1,10 +1,7 @@
 package co.com.sofka.jugador.api;
 
 import co.com.sofka.model.jugador.Jugador;
-import co.com.sofka.usecase.jugador.actualizarjugador.ActualizarJugadorUseCase;
-import co.com.sofka.usecase.jugador.apostarcarta.ApostarCartaUseCase;
 import co.com.sofka.usecase.jugador.crearjugador.CrearJugadorUseCase;
-import co.com.sofka.usecase.jugador.listarjugador.ListarJugadorUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
