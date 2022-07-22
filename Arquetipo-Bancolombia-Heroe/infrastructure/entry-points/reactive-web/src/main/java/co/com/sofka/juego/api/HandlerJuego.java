@@ -2,7 +2,6 @@ package co.com.sofka.juego.api;
 
 import co.com.sofka.model.juego.Juego;
 import co.com.sofka.usecase.juego.crearjuego.CrearJuegoUseCase;
-import co.com.sofka.usecase.juego.listarjuego.ListarJuegoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

@@ -1,10 +1,8 @@
 package co.com.sofka.mazo.api;
 
-import co.com.sofka.model.juego.Juego;
-import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.mazo.Mazo;
 import co.com.sofka.usecase.mazo.crearmazo.CrearMazoUseCase;
-import co.com.sofka.usecase.mazo.listarmazo.ListarMazoUseCase;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
