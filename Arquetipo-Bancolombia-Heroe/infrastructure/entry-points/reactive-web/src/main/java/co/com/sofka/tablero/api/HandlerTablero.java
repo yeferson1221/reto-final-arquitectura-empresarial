@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class HandlerTablero {
     private final CrearTableroUseCase crearTableroUseCase;
-    private final ListarTableroUseCase listarTableroUseCase;
+
 
     public Mono<ServerResponse> crearTableroUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Tablero.class)
@@ -26,6 +26,6 @@ public class HandlerTablero {
     public Mono<ServerResponse> listarTableroUseCase(ServerRequest serverRequest) {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(listarTableroUseCase.listarTablero(), Tablero.class);
+                .body(crearTableroUseCase.listarTablero(), Tablero.class);
     }
 }

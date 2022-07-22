@@ -11,7 +11,5 @@ public class MostrarGanadorUseCase {
 
     private final TableroRepository tableroRepository;
 
-    public Mono<Tablero> mostrarGanador(String id, Jugador jugador) {
-        return tableroRepository.mostrarGanador(id, jugador);
-    }
+
 }

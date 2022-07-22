@@ -9,7 +9,5 @@ import reactor.core.publisher.Flux;
 public class ListarTableroUseCase {
     private final TableroRepository repository;
 
-    public Flux<Tablero> listarTablero(){
-        return repository.findAll();
-    }
+
 }
