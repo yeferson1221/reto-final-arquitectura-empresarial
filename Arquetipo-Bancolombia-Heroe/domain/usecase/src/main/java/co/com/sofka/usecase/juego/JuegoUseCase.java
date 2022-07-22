@@ -7,6 +7,7 @@ import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
 import co.com.sofka.model.mazo.Mazo;
 import co.com.sofka.model.mazo.gateways.MazoRepository;
+import co.com.sofka.usecase.mazo.MazoUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -17,19 +18,17 @@ import java.util.Collections;
 public class JuegoUseCase {
     private final JuegoRepository juegoRepository;
     private final JugadorRepository jugadorRepository;
-    private final MazoRepository mazoRepository;
+    private final MazoUseCase mazoUseCase;
 
     public Mono<Juego> crearJuego() {
 
-//        return jugadorRepository
-//                .findAll()
-//                .map(jugador -> jugador.setMazo());
-
-        return jugadorRepository.findAll().map(jugador -> {
-                    jugador.setMazo(Mazo.builder().id("344").build());
-                    // lo que hago es mapear  se aplica shuffle barajar
-                    return jugador;
-                }).collectList() // retornar ordenado
+        return jugadorRepository.findAll().flatMap(jugador -> {
+                    return mazoUseCase.crearMazo()
+                            .map(mazo -> {
+                                jugador.setMazo(mazo);
+                                return jugador;
+                            });
+                }).collectList()
                 .map(jugador -> Juego.builder().jugadores(jugador).build());
     }
 

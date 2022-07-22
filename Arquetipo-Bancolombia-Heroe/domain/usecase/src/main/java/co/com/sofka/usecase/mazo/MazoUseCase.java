@@ -22,7 +22,7 @@ public class MazoUseCase {
                     return cartas;
                 }) // retornar ordenado
                 .map(cartas -> cartas.subList(0, 5)) // traigame solo 5 utilizando metodo sublist
-                .map(cartas -> Mazo.builder().mazo(cartas).build()); // construir un mazo
+                .map(cartas -> Mazo.builder().mazo(cartas).cantidad(5).build()); // construir un mazo
     }
 
     public Flux<Mazo> listarMazo() {
