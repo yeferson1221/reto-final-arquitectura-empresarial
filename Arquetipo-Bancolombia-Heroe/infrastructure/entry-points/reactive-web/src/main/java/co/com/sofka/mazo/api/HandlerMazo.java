@@ -20,15 +20,7 @@ public class HandlerMazo {
     private final ListarMazoUseCase listarMazoUseCase;
 
     public Mono<ServerResponse> crearMazoUseCase(ServerRequest serverRequest) {
-        return serverRequest.bodyToMono(Mazo.class)
-                .flatMap(mazo -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(crearMazoUseCase.crearMazo(mazo), Mazo.class));
-    }
-
-    public Mono<ServerResponse> listarMazoUseCase(ServerRequest serverRequest) {
-        return ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(listarMazoUseCase.listarMazo(), Mazo.class);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(crearMazoUseCase.crearMazo(), Mazo.class);
     }
 }
