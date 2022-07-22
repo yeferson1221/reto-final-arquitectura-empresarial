@@ -5,6 +5,7 @@ import co.com.sofka.model.juego.Juego;
 import co.com.sofka.model.juego.gateways.JuegoRepository;
 import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
+import co.com.sofka.model.mazo.Mazo;
 import co.com.sofka.model.mazo.gateways.MazoRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -20,21 +21,23 @@ public class JuegoUseCase {
 
     public Mono<Juego> crearJuego() {
 
-        return jugadorRepository.findAll().collectList().map(jugador -> {
-                    Collections.shuffle(jugador); // lo que hago es mapear  se aplica shuffle barajar
+//        return jugadorRepository
+//                .findAll()
+//                .map(jugador -> jugador.setMazo());
+
+        return jugadorRepository.findAll().map(jugador -> {
+                    jugador.setMazo(Mazo.builder().id("344").build());
+                    // lo que hago es mapear  se aplica shuffle barajar
                     return jugador;
-                }) // retornar ordenado
-                .map(jugador -> jugador.subList(0, 4)) // traigame solo 5 utilizando metodo sublist
+                }).collectList() // retornar ordenado
                 .map(jugador -> Juego.builder().jugadores(jugador).build());
-
-
     }
 
     /**
      * AL momento de crear el juego se debe generar un mazo de 5 cartas y
      * enviarlo.
      */
-    public void obtenerMazo(){
+    public void obtenerMazo() {
 
     }
 
