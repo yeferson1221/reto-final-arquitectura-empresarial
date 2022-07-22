@@ -10,7 +10,5 @@ public class ActualizarCartaUseCase {
 
     private final CartaRepository cartaRepository;
 
-    public Mono<Carta> actualizarCarta(String id, Carta carta) {
-        return cartaRepository.update(id, carta);
-    }
+
 }

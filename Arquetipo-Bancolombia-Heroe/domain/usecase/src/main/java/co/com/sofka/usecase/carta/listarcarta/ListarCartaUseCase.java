@@ -9,7 +9,5 @@ import reactor.core.publisher.Flux;
 public class ListarCartaUseCase {
     private final CartaRepository repository;
 
-    public Flux<Carta> listarCarta(){
-        return repository.findAll();
-    }
+
 }

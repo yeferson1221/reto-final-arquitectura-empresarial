@@ -15,8 +15,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class HandlerCarta {
     private final CrearCartaUseCase crearCartaUseCase;
-    private final ListarCartaUseCase listarCartaUseCase;
-    private final ActualizarCartaUseCase actualizarCartaUseCase;
+
 
     public Mono<ServerResponse> crearCartaUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Carta.class)
@@ -28,7 +27,7 @@ public class HandlerCarta {
     public Mono<ServerResponse> listarCartaUseCase(ServerRequest serverRequest) {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(listarCartaUseCase.listarCarta(), Carta.class);
+                .body(crearCartaUseCase.listarCarta(), Carta.class);
     }
 
     public Mono<ServerResponse> actualizarCartaUseCase(ServerRequest serverRequest) {
@@ -36,7 +35,7 @@ public class HandlerCarta {
         return serverRequest.bodyToMono(Carta.class)
                 .flatMap(element -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(actualizarCartaUseCase.actualizarCarta(id, element), Carta.class));
+                        .body(crearCartaUseCase.actualizarCarta(id, element), Carta.class));
     }
 
 }
