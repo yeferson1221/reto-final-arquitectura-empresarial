@@ -1,38 +1,41 @@
 package test;
 
 import co.com.sofka.model.carta.Carta;
-import co.com.sofka.model.jugador.Jugador;
-import co.com.sofka.usecase.carta.crearcarta.CrearCartaUseCase;
-import co.com.sofka.usecase.jugador.crearjugador.CrearJugadorUseCase;
+import co.com.sofka.model.carta.gateways.CartaRepository;
+import co.com.sofka.model.mazo.gateways.MazoRepository;
 import co.com.sofka.usecase.mazo.crearmazo.CrearMazoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import reactor.core.publisher.Mono;
+import org.mockito.MockitoAnnotations;
+import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+
 class CrearMazoUseCaseTest {
 
 
-    @Mock
+    @InjectMocks
     private CrearMazoUseCase useCaseTest;
 
     @Mock
-    private CrearCartaUseCase crearCartaUseCase;
+    private CartaRepository cartaRepository;
 
+    @Mock
+    private  MazoRepository mazoRepository;
 
 
     @BeforeEach
     void setUp() {
+        MockitoAnnotations.openMocks(this);
+
     }
 
     @Test
@@ -80,15 +83,18 @@ class CrearMazoUseCaseTest {
                 .valor(5L)
                 .build();
 
-        crearCartaUseCase.crearCarta(carta);
-        crearCartaUseCase.crearCarta(carta6);
-        crearCartaUseCase.crearCarta(carta2);
-        crearCartaUseCase.crearCarta(carta3);
-        crearCartaUseCase.crearCarta(carta4);
-        crearCartaUseCase.crearCarta(carta5);
+        List<Carta> listCarta = new ArrayList<>();
+        listCarta.add(carta);
+        listCarta.add(carta2);
+        listCarta.add(carta3);
+        listCarta.add(carta4);
+        listCarta.add(carta5);
+        listCarta.add(carta6);
 
-        //Cuando se ejecute el metodo crearJugador cualquier objeto de tipo jugador
-        when(crearCartaUseCase.crearCarta(any(Carta.class))).thenReturn(Mono.just(carta));
+
+        //mockiamos el metodo findAll pasando la lista creada anteriormente
+        when(cartaRepository.findAll()).thenReturn(Flux.fromStream(listCarta.stream()));
+
 
         StepVerifier.create( useCaseTest.crearMazo())
                 .assertNext(mazo -> Assertions.assertEquals(5,mazo.getMazo().size()))
