@@ -1,6 +1,5 @@
 package co.com.sofka.mongo.documents.juego;
 
-import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.tablero.Tablero;
 import lombok.AllArgsConstructor;
@@ -20,7 +19,7 @@ public class JuegoDocument {
     @Id
     private String id;
     private String ronda;
-    private List<Jugador> jugadore;
+    private List<Jugador> jugadores;
     private Tablero tablero;
     private Jugador ganador;
 }
