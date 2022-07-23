@@ -1,8 +1,6 @@
 package co.com.sofka.usecase.tablero;
 
-import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.jugador.Jugador;
-import co.com.sofka.model.mazo.Mazo;
 import co.com.sofka.model.tablero.Tablero;
 import co.com.sofka.model.tablero.gateways.TableroRepository;
 import co.com.sofka.usecase.jugador.JugadorUseCase;
@@ -24,7 +22,7 @@ public class TableroUseCase {
     }
 
     public Mono<Tablero> mostrarGanadorJuego(String id, Jugador jugador) {
-        return tableroRepository.mostrarGanadorJuego(id, jugador);
+        return Mono.just(new Tablero());
     }
 
 //    public Mono<Jugador> mostrarGanadorRonda(String idJugador, String idCarta) {
