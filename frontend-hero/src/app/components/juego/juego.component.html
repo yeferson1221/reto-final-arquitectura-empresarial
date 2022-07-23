@@ -1,22 +1,32 @@
-<p>hsiodjew</p>
-<table class="table table-striped mt-3">
-    <thead>
-        <tr>
-            <th scope="col">Jugador</th>
-            <th scope="col">mazo</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let jugador of jugadores">
-            <td>{{ jugador.nombre }}</td>
-            <td>{{ jugador.mazo }}</td>
+<div class="container">
 
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Jugador</th>
+                <th scope="col">mazo</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let jugador of jugadores">
+                <td>{{ jugador.nombre }}</td>
+                <td>{{ jugador.mazo }}</td>
 
+            </tr>
+            <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" obtenerJuego()">Play</button>
 
+        </tbody>
+    </table>
 
-        </tr>
-        <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" obtenerJuego()">Play</button>
+    <main class="card">
+        <header>
+        </header>
+        <section>
+        </section>
+        <footer>
+            <p>carta</p>
+        </footer>
+    </main>
 
-    </tbody>
-</table>
+</div>
