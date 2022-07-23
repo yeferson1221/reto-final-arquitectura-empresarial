@@ -28,8 +28,6 @@ public class JugadorUseCase {
         return repository.findAll();
     }
 
-    public Mono<Jugador> retirarse(String id, Juego juego) {
-        return repository.retirarse(id, juego);
-    }
+
 
 }

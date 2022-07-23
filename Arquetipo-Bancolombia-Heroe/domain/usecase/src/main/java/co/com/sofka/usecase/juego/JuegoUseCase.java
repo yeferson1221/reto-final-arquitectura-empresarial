@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.Collections;
 
 @RequiredArgsConstructor
@@ -29,17 +30,11 @@ public class JuegoUseCase {
                                 return jugador;
                             });
                 }).collectList()
-                .map(jugador -> Juego.builder().jugadores(jugador).build());
+                .map(jugador -> Juego.builder().jugadores(jugador).build())
+                .flatMap(juegoRepository::save);
 
     }
 
-    /**
-     * AL momento de crear el juego se debe generar un mazo de 5 cartas y
-     * enviarlo.
-     */
-    public void obtenerMazo(){
-
-    }
 
     /**
      * Obtener el ganador de la ronda, de las cartas en juego
@@ -53,6 +48,22 @@ public class JuegoUseCase {
 
     public Flux<Juego> listarJuego() {
         return juegoRepository.findAll();
+    }
+
+    public Mono<Juego> retirarse(String id, String idJuego) {
+
+        return juegoRepository.findById(idJuego).map(juego -> {
+            Jugador jugador = juego.getJugadores()
+                    .stream()
+                    .filter(jugador1 -> jugador1.getId() == id).findFirst().get();
+
+            juego.getJugadores()
+                    .remove(jugador);
+
+            return juego;
+
+        }).cast(Juego.class).flatMap(juegoRepository::save);
+
     }
 
     public Flux<Carta> pasarCartasApostadas() {
