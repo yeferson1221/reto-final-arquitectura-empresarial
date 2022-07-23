@@ -29,12 +29,10 @@ public class JugadorUseCase {
     }
 
     public Mono<Jugador> apostarCarta(String id, Jugador jugador) {
-        return repository.apostarCarta(id, jugador);
+        return Mono.just(new Jugador());
     }
-
 
     public Mono<Jugador> retirarse(String id, Juego juego) {
-        return repository.retirarse(id, juego);
+        return Mono.just(new Jugador());
     }
-
 }
