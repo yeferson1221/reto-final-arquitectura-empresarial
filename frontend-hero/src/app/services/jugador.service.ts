@@ -18,4 +18,8 @@ export class JugadorService {
     return this.http.post(this.url, jugador);
   }
 
+  obtenerJugador(id: string): Observable<any> {
+    return this.http.get(this.url + id);
+  }
+
 }
