@@ -5,14 +5,10 @@ import co.com.sofka.model.juego.Juego;
 import co.com.sofka.model.juego.gateways.JuegoRepository;
 import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
-import co.com.sofka.model.mazo.Mazo;
-import co.com.sofka.model.mazo.gateways.MazoRepository;
 import co.com.sofka.usecase.mazo.MazoUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Collections;
 
 @RequiredArgsConstructor
 public class JuegoUseCase {
@@ -30,14 +26,13 @@ public class JuegoUseCase {
                             });
                 }).collectList()
                 .map(jugador -> Juego.builder().jugadores(jugador).build());
-
     }
 
     /**
      * AL momento de crear el juego se debe generar un mazo de 5 cartas y
      * enviarlo.
      */
-    public void obtenerMazo(){
+    public void obtenerMazo() {
 
     }
 
