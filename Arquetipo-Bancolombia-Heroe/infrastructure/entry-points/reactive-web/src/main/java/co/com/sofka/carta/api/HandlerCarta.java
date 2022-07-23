@@ -12,20 +12,20 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class HandlerCarta {
-    private final CartaUseCase crearCartaUseCase;
+    private final CartaUseCase cartaUseCase;
 
 
     public Mono<ServerResponse> crearCartaUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Carta.class)
                 .flatMap(carta -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(crearCartaUseCase.crearCarta(carta), Carta.class));
+                        .body(cartaUseCase.crearCarta(carta), Carta.class));
     }
 
     public Mono<ServerResponse> listarCartaUseCase(ServerRequest serverRequest) {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(crearCartaUseCase.listarCarta(), Carta.class);
+                .body(cartaUseCase.listarCarta(), Carta.class);
     }
 
     public Mono<ServerResponse> actualizarCartaUseCase(ServerRequest serverRequest) {
@@ -33,7 +33,7 @@ public class HandlerCarta {
         return serverRequest.bodyToMono(Carta.class)
                 .flatMap(element -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(crearCartaUseCase.actualizarCarta(id, element), Carta.class));
+                        .body(cartaUseCase.actualizarCarta(id, element), Carta.class));
     }
 
 }
