@@ -14,7 +14,8 @@ import { Juego } from '../models/juego';
 export class JuegoComponent implements OnInit {
       jugadores: Jugador[] = [];
       mazo: Mazo[] = [];
-      juego: Juego[] =[];
+      juegos: Juego[] =[];
+      console = console;
   constructor(
     private jugadorService: JugadorService,
     private mazoService: MazoService,
@@ -46,8 +47,8 @@ export class JuegoComponent implements OnInit {
   }
   obtenerJuego(){
     this.juegoService.optenerJuego().subscribe(data => {
-      this.juego.push(data);
-      console.log(this.juego)
+      this.juegos.push(data);
+      console.log(this.juegos)
     }, error => {
       console.log(error);
     
