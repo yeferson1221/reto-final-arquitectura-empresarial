@@ -16,6 +16,14 @@ public class JugadorUseCase {
         return repository.save(jugador);
     }
 
+    public Flux<Jugador> listarJugador() {
+        return repository.findAll();
+    }
+
+    public Mono<Jugador> listarPorId(String id) {
+        return repository.findById(id);
+    }
+
     public Mono<Jugador> actualizarJugador(String id, co.com.sofka.model.jugador.Jugador jugador) {
         return repository.update(id, jugador);
     }
@@ -24,9 +32,6 @@ public class JugadorUseCase {
         return repository.apostarCarta(id, jugador);
     }
 
-    public Flux<Jugador> listarJugador() {
-        return repository.findAll();
-    }
 
     public Mono<Jugador> retirarse(String id, Juego juego) {
         return repository.retirarse(id, juego);
