@@ -14,7 +14,7 @@ public class RouterRestJuego {
     @Bean
     public RouterFunction<ServerResponse> routerFunctionJuego(HandlerJuego handlerJuego) {
 
-        return route(POST("/api/juego"), handlerJuego::crearJuegoUseCase);
+        return route(GET("/api/juego"), handlerJuego::crearJuegoUseCase);
                 //.and(route(GET("/api/juego"), handlerJuego::listarJuegoUseCase));
     }
 }

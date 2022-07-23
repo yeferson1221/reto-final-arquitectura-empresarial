@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { environment } from 'src/environments/environment';
+import { JuegoComponent } from './components/juego/juego.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { environment } from 'src/environments/environment';
     RegistrarUsuarioComponent,
     VerificarCorreoComponent,
     RecuperarPasswordComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    JuegoComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,12 @@ public class TableroMongoRepositoryAdapter extends AdapterOperations<Tablero, Ta
     }
 
     @Override
-    public Mono<Tablero> mostrarGanador(String id, Jugador jugador) {
+    public Mono<Tablero> mostrarGanadorJuego(String id, Jugador jugador) {
+        return null;
+    }
+
+    @Override
+    public Mono<Tablero> mostrarGanadorRonda(String id, Jugador jugador) {
         return null;
     }
 }
