@@ -7,7 +7,6 @@ import lombok.*;
 import java.util.List;
 
 @Data
-@ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,4 +17,15 @@ public class Juego {
     private List<Jugador> jugadores;
     private Tablero tablero;
     private Jugador ganador;
+
+    @Override
+    public String toString() {
+        return "Juego{" +
+                "id='" + id + '\'' +
+                ", ronda='" + ronda + '\'' +
+                ", jugadores=" + jugadores +
+                ", tablero=" + tablero +
+                ", ganador=" + ganador +
+                '}';
+    }
 }

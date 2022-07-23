@@ -1,9 +1,11 @@
+import { Mazo } from './mazo';
+import { Jugador } from './jugador';
 export class Juego {
     id?: string;
     ronda: string;
-    jugadores: [];
+    jugadores: Jugador[];
 
-    constructor(ronda: string, jugadores: []){
+    constructor(ronda: string, jugadores:Jugador[]){
         this.ronda = ronda;
         this.jugadores = jugadores;
 

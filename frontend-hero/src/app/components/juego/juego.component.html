@@ -11,7 +11,7 @@
                 <td>{{ jugador.nombre }}</td>
 
             </tr>
-            <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" obtenerJuego()">Play</button>
+            <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" obtenerJuego()" (click)=" obtenerMazo()">Play</button>
 
         </tbody>
     </table>
@@ -80,7 +80,7 @@
 
                 <img src="../../../assets/img/y2.png" />
 
-                <figcaption *ngFor="let juego of juegos">{{console.log(juego.jugadores)}}</figcaption>
+                <figcaption *ngFor="let baraja of barajas">{{baraja.valor}}</figcaption>
 
             </figure>
 

@@ -5,6 +5,7 @@ import { JugadorService } from 'src/app/services/jugador.service';
 import { MazoService } from 'src/app/services/mazo.service';
 import { JuegoService } from 'src/app/services/juego.service';
 import { Juego } from '../models/juego';
+import { Carta } from '../models/carta';
 
 @Component({
   selector: 'app-juego',
@@ -13,8 +14,10 @@ import { Juego } from '../models/juego';
 })
 export class JuegoComponent implements OnInit {
       jugadores: Jugador[] = [];
-      mazo: Mazo[] = [];
+      mazos: Mazo[] = [];
       juegos: Juego[] =[];
+      cartas:  Carta[]= [];
+      barajas: any[] =[];
       console = console;
   constructor(
     private jugadorService: JugadorService,
@@ -38,8 +41,25 @@ export class JuegoComponent implements OnInit {
 
   obtenerMazo(){
     this.mazoService.optenerMazo().subscribe(data => {
-      this.mazo.push(data);
-      console.log(this.mazo)
+      this.mazos.push(data);
+
+      this.mazos.forEach((mazo)=>{
+        
+        mazo.baraja.forEach((mazo)=>{
+           this.barajas.push(mazo)
+          //var mazoJugador = jugador.mazo
+          
+         console.log(mazo.valor)
+
+
+
+        })
+      
+      }
+          
+        )
+
+      console.log(this.mazos)
     }, error => {
       console.log(error);
     
@@ -48,10 +68,27 @@ export class JuegoComponent implements OnInit {
   obtenerJuego(){
     this.juegoService.optenerJuego().subscribe(data => {
       this.juegos.push(data);
+      this.juegos.forEach((juego)=>{
+        
+        juego.jugadores.forEach((jugador)=>{
+           
+          //var mazoJugador = jugador.mazo
+          
+         console.log(jugador.nombre)
+
+
+
+        })
+      
+      }
+          
+        )
+      
       console.log(this.juegos)
     }, error => {
       console.log(error);
     
     })
   }
+
 }

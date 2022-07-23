@@ -8,7 +8,6 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 @Data
-@ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,4 +17,15 @@ public class Jugador {
     private Mazo mazo;
     private String turno;
     private Integer puntaje;
+
+    @Override
+    public String toString() {
+        return "Jugador{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", mazo=" + mazo +
+                ", turno='" + turno + '\'' +
+                ", puntaje=" + puntaje +
+                '}';
+    }
 }

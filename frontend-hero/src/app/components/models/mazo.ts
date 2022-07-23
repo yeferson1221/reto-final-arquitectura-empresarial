@@ -1,10 +1,11 @@
+import { Carta } from './carta';
 export class Mazo {
     id?: string;
-    cartas: [];
+    baraja: Carta[];
     cantidad: number;
 
-    constructor(cartas: [], cantidad: number){
-        this.cartas = cartas;
+    constructor(baraja:[], cantidad: number){
+        this.baraja = baraja;
         this.cantidad = cantidad;
 
     }
