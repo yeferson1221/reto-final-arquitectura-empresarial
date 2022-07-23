@@ -13,7 +13,7 @@ public interface JugadorRepository {
 
     Mono<Jugador> update(String id, Jugador jugador);
 
-    Mono<Jugador> retirarse(String id, Juego juego);
 
-    Mono<Jugador> apostarCarta(String id, Jugador jugador);
+
+
 }

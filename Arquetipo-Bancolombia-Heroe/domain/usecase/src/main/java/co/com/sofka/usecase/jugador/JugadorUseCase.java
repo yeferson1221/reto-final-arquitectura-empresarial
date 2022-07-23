@@ -21,7 +21,7 @@ public class JugadorUseCase {
     }
 
     public Mono<Jugador> apostarCarta(String id, Jugador jugador) {
-        return repository.apostarCarta(id, jugador);
+        return Mono.just(new Jugador());
     }
 
     public Flux<Jugador> listarJugador() {
