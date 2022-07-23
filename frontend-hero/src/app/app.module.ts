@@ -16,8 +16,12 @@ import { RegistrarUsuarioComponent } from './components/registrar-usuario/regist
 import { VerificarCorreoComponent } from './components/verificar-correo/verificar-correo.component';
 import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { environment } from 'src/environments/environment';
+import { JuegoComponent } from './components/juego/juego.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +31,15 @@ import { environment } from 'src/environments/environment';
     RegistrarUsuarioComponent,
     VerificarCorreoComponent,
     RecuperarPasswordComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    JuegoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added

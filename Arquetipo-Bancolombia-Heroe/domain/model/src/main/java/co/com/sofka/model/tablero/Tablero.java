@@ -1,14 +1,12 @@
 package co.com.sofka.model.tablero;
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.juego.Juego;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Map;
 
 @Data
+@ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
