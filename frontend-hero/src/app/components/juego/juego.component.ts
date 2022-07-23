@@ -3,6 +3,8 @@ import { Jugador } from '../models/jugador';
 import { Mazo } from '../models/mazo';
 import { JugadorService } from 'src/app/services/jugador.service';
 import { MazoService } from 'src/app/services/mazo.service';
+import { JuegoService } from 'src/app/services/juego.service';
+import { Juego } from '../models/juego';
 
 @Component({
   selector: 'app-juego',
@@ -12,9 +14,11 @@ import { MazoService } from 'src/app/services/mazo.service';
 export class JuegoComponent implements OnInit {
       jugadores: Jugador[] = [];
       mazo: Mazo[] = [];
+      juego: Juego[] =[];
   constructor(
     private jugadorService: JugadorService,
     private mazoService: MazoService,
+    private juegoService: JuegoService,
   ) { }
 
   ngOnInit(): void {
@@ -40,5 +44,13 @@ export class JuegoComponent implements OnInit {
     
     })
   }
-
+  obtenerJuego(){
+    this.juegoService.optenerJuego().subscribe(data => {
+      this.juego.push(data);
+      console.log(this.juego)
+    }, error => {
+      console.log(error);
+    
+    })
+  }
 }
