@@ -11,6 +11,8 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.swing.text.html.parser.Entity;
+
 @Component
 @RequiredArgsConstructor
 public class HandlerJuego {
@@ -24,5 +26,15 @@ public class HandlerJuego {
 
     public Flux<Carta> pasarCartasApostadas(ServerRequest serverRequest) {
         return crearJuegoUseCase.pasarCartasApostadas();
+    }
+
+    public Mono<ServerResponse> eliminarJugador(ServerRequest serverRequest){
+        var id = serverRequest.pathVariable("idjugador");
+       // var juego = serverRequest.pathVariable("idjuego");
+        var juego="";
+
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON) // expone la respuesta en formato json depende dle mediatype
+                .body(crearJuegoUseCase.retirarse(id, juego), Juego.class);
     }
 }

@@ -9,4 +9,6 @@ public interface JuegoRepository {
     Mono<Juego> save(Juego juego);
 
     Flux<Juego> findAll();
+
+    Mono<Juego> findById(String idJuego);
 }

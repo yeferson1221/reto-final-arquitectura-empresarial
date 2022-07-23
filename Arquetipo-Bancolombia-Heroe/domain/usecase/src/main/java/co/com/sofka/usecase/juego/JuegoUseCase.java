@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+
 @RequiredArgsConstructor
 public class JuegoUseCase {
     private final JuegoRepository juegoRepository;
@@ -18,16 +19,15 @@ public class JuegoUseCase {
 
     public Mono<Juego> crearJuego() {
 
-        return jugadorRepository
-                .findAll()
-                .flatMap(jugador -> {
-                    return mazoUseCase.crearMazo().map(mazo -> {
-                        jugador.setMazo(mazo);
-                        return jugador;
-                    });
-                })
-                .collectList()
-                .map(jugador -> Juego.builder().jugadores(jugador).build());
+        return jugadorRepository.findAll().flatMap(jugador -> {
+                    return mazoUseCase.crearMazo()
+                            .map(mazo -> {
+                                jugador.setMazo(mazo);
+                                return jugador;
+                            });
+                }).collectList()
+                .map(jugador -> Juego.builder().jugadores(jugador).build())
+                .flatMap(juegoRepository::save);
     }
 
     /**
@@ -37,6 +37,7 @@ public class JuegoUseCase {
     public void obtenerMazo() {
 
     }
+
 
     /**
      * Obtener el ganador de la ronda, de las cartas en juego
@@ -50,6 +51,21 @@ public class JuegoUseCase {
 
     public Flux<Juego> listarJuego() {
         return juegoRepository.findAll();
+    }
+
+    public Mono<Juego> retirarse(String id, String idJuego) {
+
+        return juegoRepository.findById(idJuego).map(juego -> {
+            Jugador jugador = juego.getJugadores()
+                    .stream()
+                    .filter(jugador1 -> jugador1.getId() == id).findFirst().get();
+
+            juego.getJugadores()
+                    .remove(jugador);
+
+            return juego;
+
+        }).cast(Juego.class).flatMap(juegoRepository::save);
     }
 
     public Flux<Carta> pasarCartasApostadas() {
