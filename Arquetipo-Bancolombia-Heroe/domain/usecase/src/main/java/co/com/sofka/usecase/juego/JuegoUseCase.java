@@ -18,13 +18,15 @@ public class JuegoUseCase {
 
     public Mono<Juego> crearJuego() {
 
-        return jugadorRepository.findAll().flatMap(jugador -> {
-                    return mazoUseCase.crearMazo()
-                            .map(mazo -> {
-                                jugador.setMazo(mazo);
-                                return jugador;
-                            });
-                }).collectList()
+        return jugadorRepository
+                .findAll()
+                .flatMap(jugador -> {
+                    return mazoUseCase.crearMazo().map(mazo -> {
+                        jugador.setMazo(mazo);
+                        return jugador;
+                    });
+                })
+                .collectList()
                 .map(jugador -> Juego.builder().jugadores(jugador).build());
     }
 
@@ -51,7 +53,6 @@ public class JuegoUseCase {
     }
 
     public Flux<Carta> pasarCartasApostadas() {
-        return juegoRepository.pasarCartasApostadas();
+        return Flux.just(new Carta());
     }
-
 }

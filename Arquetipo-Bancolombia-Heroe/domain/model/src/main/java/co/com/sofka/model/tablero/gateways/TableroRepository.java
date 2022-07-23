@@ -13,5 +13,5 @@ public interface TableroRepository {
 
     Mono<Tablero> mostrarGanadorJuego(String id, Jugador jugador);
 
-    Mono<Tablero> mostrarGanadorRonda(String id, Jugador jugador);
+    Mono<Tablero> mostrarGanadorRonda(String id, String jugador);
 }
