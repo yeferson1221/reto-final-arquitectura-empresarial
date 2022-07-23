@@ -4,66 +4,24 @@
         <thead>
             <tr>
                 <th scope="col">Jugador</th>
-                <th scope="col">mazo</th>
-                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let jugador of jugadores">
                 <td>{{ jugador.nombre }}</td>
-                <td>{{ jugador.mazo }}</td>
 
             </tr>
             <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" obtenerJuego()">Play</button>
 
         </tbody>
     </table>
-    <div class="tablero">
-        <div class="card" style="background-image: url(../../../assets/img/cartas/063.jpg);">
-
-            <header>
-            </header>
-            <section>
-            </section>
-            <footer>
-                <p>carta</p>
-            </footer>
-        </div>
-        <br>
-        <div class="card" style="background-image: url(../../../assets/img/cartas/044.jpg);">
-
-            <header>
-            </header>
-            <section>
-            </section>
-            <footer>
-                <p>carta</p>
-            </footer>
-        </div>
-    </div>
 
 
 
-    <div class="overlay"></div>
 
-    <!-- The HTML5 video element that will create the background video on the header -->
-    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-    <source src="../../../assets/video/intro-marvel-studios-hd.mp4" type="video/mp4">
-  </video>
 
-    <!-- The header content -->
-    <div class="container h-100">
-        <div class="d-flex h-100 text-center align-items-center">
-            <div class="w-100 text-white">
-                <h1 class="display-3">Ingrese su nombre de usuario</h1>
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="NickName" />
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="container">
+    <!-- <div class="container">
         <div class="d-flex justify-content-center">
             <ul class="ds-btn">
                 <li>
@@ -88,6 +46,95 @@
             </ul>
 
         </div>
+    </div> -->
+
+
+
+
+
+
+
+    <div class="wrapper">
+
+        <h2>Tablero</h2>
+
+        <div class="cards">
+
+            <figure class="card">
+
+                <img src="../../../assets/img/y2.png" />
+
+                <figcaption>Poder</figcaption>
+
+            </figure>
+
+            <figure class="card">
+
+                <img src="../../../assets/img/y2.png" />
+
+                <figcaption>Poder</figcaption>
+
+            </figure>
+
+            <figure class="card">
+
+                <img src="../../../assets/img/y2.png" />
+
+                <figcaption>Poder</figcaption>
+
+            </figure>
+
+            <figure class="card">
+
+                <img src="../../../assets/img/y2.png" />
+
+                <figcaption>Poder</figcaption>
+
+            </figure>
+
+        </div>
+
+    </div>
+
+
+
+
+    <h2>mazo</h2>
+
+    <div class="cards">
+
+        <figure class="card">
+
+            <img src="../../../assets/img/cartas/044.jpg" />
+
+            <figcaption>Poder</figcaption>
+
+        </figure>
+
+        <figure class="card">
+
+            <img src="../../../assets/img/cartas/063.jpg" />
+
+            <figcaption>Poder</figcaption>
+
+        </figure>
+
+        <figure class="card">
+
+            <img src="../../../assets/img/cartas/0BF.jpg" />
+
+            <figcaption>Poder</figcaption>
+
+        </figure>
+
+        <figure class="card">
+
+            <img src="../../../assets/img/cartas/0E0.jpg" />
+
+            <figcaption>Poder</figcaption>
+
+        </figure>
+
     </div>
 
 </div>
