@@ -24,6 +24,4 @@ public class JugadorMongoRepositoryAdapter extends AdapterOperations<Jugador, Ju
                 .save(new JugadorDocument(jugador.getId(), jugador.getNombre(), jugador.getMazo(), jugador.getTurno(), jugador.getPuntaje()))
                 .flatMap(element -> Mono.just(jugador));
     }
-
-
 }

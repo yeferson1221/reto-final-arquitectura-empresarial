@@ -32,7 +32,4 @@ public class JugadorUseCase {
         return Mono.just(new Jugador());
     }
 
-
-
-
 }

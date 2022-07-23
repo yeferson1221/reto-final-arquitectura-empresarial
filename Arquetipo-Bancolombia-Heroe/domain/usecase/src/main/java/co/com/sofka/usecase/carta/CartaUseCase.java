@@ -18,7 +18,7 @@ public class CartaUseCase {
         return repository.update(id, carta);
     }
 
-    public Flux<Carta> listarCarta(){
+    public Flux<Carta> listarCarta() {
         return repository.findAll();
     }
 }
