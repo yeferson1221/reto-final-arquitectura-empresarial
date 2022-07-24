@@ -6,6 +6,7 @@ import { MazoService } from 'src/app/services/mazo.service';
 import { JuegoService } from 'src/app/services/juego.service';
 import { Juego } from '../models/juego';
 import { Carta } from '../models/carta';
+import { CloneVisitor } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-juego',
@@ -44,14 +45,13 @@ export class JuegoComponent implements OnInit {
       this.mazos.push(data);
 
       this.mazos.forEach((mazo)=>{
-        
+        // recirrer mazo dentro de barajas
         mazo.baraja.forEach((mazo)=>{
            this.barajas.push(mazo)
           //var mazoJugador = jugador.mazo
           
-         console.log(mazo.valor)
-
-
+         console.log(mazo.valor+"este es el valor")
+         console.log(mazo.uri+" esta la uri "+mazo.nombre)
 
         })
       
@@ -90,5 +90,8 @@ export class JuegoComponent implements OnInit {
     
     })
   }
+
+
+  
 
 }

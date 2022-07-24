@@ -17,10 +17,6 @@
     </table>
 
 
-
-
-
-
     <!-- <div class="container">
         <div class="d-flex justify-content-center">
             <ul class="ds-btn">
@@ -81,6 +77,8 @@
                 <img src="../../../assets/img/y2.png" />
 
                 <figcaption *ngFor="let baraja of barajas">{{baraja.valor}}</figcaption>
+                <figcaption class="log" *ngFor="let baraja of barajas">{{baraja.uri}}</figcaption>
+                <figcaption class="log1" *ngFor="let baraja of barajas">{{baraja.nombre}}</figcaption>
 
             </figure>
 
@@ -101,11 +99,28 @@
 
     <h2>mazo</h2>
 
-    <div class="cards">
+    <div *ngIf="barajas.length > 0" class="cards">
+
+        <figure *ngFor="let baraja of barajas" class="card">
+
+            <img [src]=baraja.uri class="img-carta">
+
+            <figcaption>{{baraja.valor}}</figcaption>
+
+        </figure>
+
+        <!-- <figure class="card">
+
+            <img [src]="imgTemp" class="img-carta">
+
+            <figcaption>Poder</figcaption>
+
+        </figure>
+
 
         <figure class="card">
 
-            <img src="../../../assets/img/cartas/044.jpg" />
+            <img [src]="imgTemp" class="img-carta">
 
             <figcaption>Poder</figcaption>
 
@@ -113,27 +128,12 @@
 
         <figure class="card">
 
-            <img src="../../../assets/img/cartas/063.jpg" />
+            <img [src]="imgTemp1" class="img-carta">
 
             <figcaption>Poder</figcaption>
 
-        </figure>
+        </figure> -->
 
-        <figure class="card">
-
-            <img src="../../../assets/img/cartas/0BF.jpg" />
-
-            <figcaption>Poder</figcaption>
-
-        </figure>
-
-        <figure class="card">
-
-            <img src="../../../assets/img/cartas/0E0.jpg" />
-
-            <figcaption>Poder</figcaption>
-
-        </figure>
 
     </div>
 
