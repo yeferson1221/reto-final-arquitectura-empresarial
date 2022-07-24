@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Comparator;
+
+
 @RequiredArgsConstructor
 public class JuegoUseCase {
     private final JuegoRepository juegoRepository;
@@ -25,14 +28,36 @@ public class JuegoUseCase {
                                 return jugador;
                             });
                 }).collectList()
-                .map(jugador -> Juego.builder().jugadores(jugador).build());
+                .map(jugador -> Juego.builder().jugadores(jugador).build())
+                .flatMap(juegoRepository::save);
     }
 
     /**
-     * AL momento de crear el juego se debe generar un mazo de 5 cartas y
-     * enviarlo.
+     * Obtener el ganador de la ronda, de las cartas en juego
+     * quien tiene la mayor valor y retornar ese jugador.
+     *
+     * @return
      */
-    public void obtenerMazo() {
+    public Mono<Jugador> obtenerGanadorJuego(String idJuego) {
+
+        return jugadorRepository.findAll().collectList()
+                .map(jugadors -> jugadors.stream()
+                        .max(Comparator.comparing(Jugador::getPuntaje)).get());
+
+    }
+
+
+    /**
+     * Obtener el ganador de la ronda, de las cartas en juego
+     * quien tiene la mayor valor y retornar ese jugador.
+     *
+     * @return
+     */
+    public Mono<Jugador> apostar(String idJuego) {
+
+        return jugadorRepository.findAll().collectList()
+                .map(jugadors -> jugadors.stream().max(Comparator.comparing(Jugador::getPuntaje)).get());
+
 
     }
 
@@ -43,6 +68,7 @@ public class JuegoUseCase {
      * @return
      */
     public Mono<Jugador> obtenerGanador() {
+
         return Mono.empty();
     }
 
@@ -50,8 +76,21 @@ public class JuegoUseCase {
         return juegoRepository.findAll();
     }
 
-    public Flux<Carta> pasarCartasApostadas() {
-        return juegoRepository.pasarCartasApostadas();
+    public Mono<Juego> retirarse(String id, String idJuego) {
+
+        return juegoRepository.findById(idJuego).map(juego -> {
+            Jugador jugador = juego.getJugadores()
+                    .stream()
+                    .filter(jugador1 -> jugador1.getId().equals(id)).findFirst().get();
+
+            juego.getJugadores()
+                    .remove(jugador);
+
+            return juego;
+        }).cast(Juego.class).flatMap(juegoRepository::save);
     }
 
+    public Flux<Carta> pasarCartasApostadas() {
+        return Flux.just(new Carta());
+    }
 }
