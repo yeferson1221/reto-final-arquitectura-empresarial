@@ -16,7 +16,8 @@ public class RouterRestJuego {
     public RouterFunction<ServerResponse> routerFunctionJuego(HandlerJuego handlerJuego) {
 
         return route(GET("/api/juego"), handlerJuego::crearJuegoUseCase)
-                .and(route(GET("/api/juegodelete"), handlerJuego::eliminarJugador));
+                .andRoute(DELETE("api/juego/{idjugador}/{idjuego}"), handlerJuego::eliminarJugador)
+                .andRoute(GET("api/ganadorjuego/"), handlerJuego::obtenerGanadorJuego);
     }
 }
 

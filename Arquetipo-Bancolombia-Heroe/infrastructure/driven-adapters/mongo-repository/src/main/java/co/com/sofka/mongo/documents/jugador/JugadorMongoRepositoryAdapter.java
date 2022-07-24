@@ -1,6 +1,5 @@
 package co.com.sofka.mongo.documents.jugador;
 
-import co.com.sofka.model.juego.Juego;
 import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
 import co.com.sofka.mongo.helper.AdapterOperations;
