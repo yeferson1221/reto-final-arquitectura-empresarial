@@ -38,14 +38,11 @@ public class JuegoUseCase {
      *
      * @return
      */
-    public Mono<Jugador> obtenerGanadorJuego() {
+    public Mono<Jugador> obtenerGanadorJuego(String idJuego) {
 
-        return Mono.just(jugadorRepository
-                .findAll()
-                .toStream()
-                .max(Comparator
-                        .comparing(jugador -> jugador.getPuntaje()))
-                .get());
+        return jugadorRepository.findAll().collectList()
+                .map(jugadors -> jugadors.stream().max(Comparator.comparing(Jugador::getPuntaje)).get());
+
 
     }
 

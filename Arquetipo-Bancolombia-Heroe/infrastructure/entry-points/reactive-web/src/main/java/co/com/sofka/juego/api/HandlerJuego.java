@@ -29,9 +29,9 @@ public class HandlerJuego {
         return crearJuegoUseCase.pasarCartasApostadas();
     }
 
-    public Mono<ServerResponse> eliminarJugador(ServerRequest serverRequest){
+    public Mono<ServerResponse> eliminarJugador(ServerRequest serverRequest) {
         var id = serverRequest.pathVariable("idjugador");
-       var juego = serverRequest.pathVariable("idjuego");
+        var juego = serverRequest.pathVariable("idjuego");
 
 
         return ServerResponse.ok()
@@ -45,10 +45,11 @@ public class HandlerJuego {
      * @param serverRequest Peticion
      * @return Jugador ganador.
      */
-    public Mono<ServerResponse> obtenerGanadorJuego(ServerRequest serverRequest){
+    public Mono<ServerResponse> obtenerGanadorJuego(ServerRequest serverRequest) {
+        var idJuego = serverRequest.pathVariable("idjuego");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(crearJuegoUseCase.obtenerGanadorJuego(), Jugador.class);
+                .body(crearJuegoUseCase.obtenerGanadorJuego(idJuego), Jugador.class);
 
     }
 }
