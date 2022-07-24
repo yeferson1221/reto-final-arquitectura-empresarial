@@ -33,7 +33,6 @@ public class HandlerJuego {
         var id = serverRequest.pathVariable("idjugador");
         var juego = serverRequest.pathVariable("idjuego");
 
-
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON) // expone la respuesta en formato json depende dle mediatype
                 .body(crearJuegoUseCase.retirarse(id, juego), Juego.class);
