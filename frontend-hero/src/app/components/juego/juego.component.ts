@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { Jugador } from '../models/jugador';
 import { Mazo } from '../models/mazo';
 import { JugadorService } from 'src/app/services/jugador.service';
@@ -20,36 +22,55 @@ export class JuegoComponent implements OnInit {
       barajas: Carta[] =[];
       id: string | null;
       console = console;
+      dataUser: any;
   constructor(
     private jugadorService: JugadorService,
     private mazoService: MazoService,
     private juegoService: JuegoService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private afAuth: AngularFireAuth,
+    private router: Router
   ) {  this.id = this.aRouter.snapshot.paramMap.get('id');}
 
   ngOnInit(): void {
-     this.obtenerJugadorId('62de03765ce3215fc4a10b02')
-     this.optenerJugador()
+     //this.obtenerJugadorId('62de03765ce3215fc4a10b02')
+     //this.optenerJugador()
+
+        this.afAuth.currentUser.then(user => {
+      if(user && user.emailVerified) {
+        this.dataUser = user;
+        console.log(user)
+      } else {
+        this.router.navigate(['/login']);
+      }
+    })
   }
 
-  obtenerJugadorId(id:any) {
-    this.jugadorService.obtenerJugadorId(id).subscribe(data => {
-      this.jugadores.forEach((jugador)=>{
-        console.log(jugador.nombre+"ddddddddddd")
-      })
-      this.jugadores.push(data);
-    }, error => {
-      console.log(error);
+  logOut() {
+    this.afAuth.signOut().then(() => this.router.navigate(['/login']));
+    }
+
+  // obtenerJugadorId(id:any) {
+  //   this.jugadorService.obtenerJugadorId(id).subscribe(data => {
+  //     this.jugadores.forEach((jugador)=>{
+  //       console.log(jugador.nombre+"ddddddddddd")
+  //     })
+  //     this.jugadores.push(data);
+  //   }, error => {
+  //     console.log(error);
     
-    })
-  }
+  //   })
+  // }
 
-  optenerJugador(){
-    this.jugadorService.optenerJugador().subscribe(data=>{
-      this.jugadores.push(data);
-      this.console.log(this.jugadores+"ddddddddddddd")
-    })
-  }
+  // optenerJugador(){
+  //   this.jugadorService.optenerJugador().subscribe(data => {
+  //     this.jugadores=data
+  //     console.log(this.jugadores+"jugadores------------")
+  //   }, error => {
+  //     console.log(error);
+    
+  //   })
+  // }
 
   obtenerMazo(){
     this.mazoService.optenerMazo().subscribe(data => {
@@ -81,7 +102,7 @@ export class JuegoComponent implements OnInit {
         juego.jugadores.forEach((jugador)=>{
           this.jugadores.push(jugador);
           //var mazoJugador = jugador.mazo
-         console.log(jugador.nombre)
+         //console.log(jugador+"dddddddddddddddddddddddddd")
 
           // jugador.mazo.forEach((mazo)=>{
           //   mazo.baraja.forEach((mazo)=>{
@@ -91,7 +112,7 @@ export class JuegoComponent implements OnInit {
            
           // })
 
-        })
+       })
       
       }      
       )

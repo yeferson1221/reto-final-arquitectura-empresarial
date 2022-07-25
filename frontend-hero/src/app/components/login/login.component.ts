@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         if(user.user?.emailVerified) {
         this.router.navigate(['/dashboard']);
        } else {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/verificar-correo']);
       }
     }).catch((error) => {
       this.loading = false;

@@ -7,8 +7,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let jugador of jugadores">
-                <td>{{ jugador.nombre }}</td>
+            <tr>
+                <td>{{ dataUser?.email }}</td>
 
             </tr>
             <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" obtenerJuego()" (click)=" obtenerMazo()">Play</button>
@@ -19,7 +19,7 @@
 
     <div class="wrapper">
 
-        <div class="nombreJugadores">
+        <div class="nombreJugadores" *ngIf="barajas.length > 0">
             <h3 *ngFor="let jugador of jugadores">{{jugador.nombre}}</h3>
         </div>
 
@@ -68,7 +68,7 @@
 
 
 
-    <h2>mazo</h2>
+    <h2>mazo {{ dataUser?.email }}</h2>
 
     <div *ngIf="barajas.length > 0" class="cards">
 
@@ -81,6 +81,4 @@
 
         </figure>
     </div>
-
-    <p>{{jugadores}}</p>
 </div>
