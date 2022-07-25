@@ -9,17 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.reactivestreams.Publisher;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static reactor.core.publisher.Mono.when;
-
-class CrearCartaUseCaseTest {
+class ActualizarCartaUseCaseTest {
 
     @InjectMocks
-    private CartaUseCase useCaseTest;
+    private CartaUseCase cartaUseCaseTest;
 
     @Mock
     private CartaRepository cartaRepository;
@@ -30,22 +25,23 @@ class CrearCartaUseCaseTest {
     }
 
     @Test
-    void crearCartaCorrecta() {
-
+    void actualizarCartaCorrecto() {
+        //arrange
         Carta carta = Carta.builder()
-                .id("123")
+                .id("987")
                 .nombre("Zodiac")
                 .uri("")
                 .valor(5L)
                 .build();
 
-        //act
-        when((Publisher<?>) carta).thenReturn(carta.getNombre());
+        var command = cartaRepository.update(carta.getId(), carta);
 
+        //act
 
         //asert
-        StepVerifier.create(cartaRepository.findAll());
-                Assertions.assertEquals("Zodiac", carta.getNombre().toString());
-                //.expectComplete().verify();
+        StepVerifier.create(cartaUseCaseTest.actualizarCarta(carta.getId(), carta))
+                .assertNext(carta1 -> Assertions.assertEquals("987", carta1.getId()))
+                .expectComplete()
+                .verify();
     }
 }
