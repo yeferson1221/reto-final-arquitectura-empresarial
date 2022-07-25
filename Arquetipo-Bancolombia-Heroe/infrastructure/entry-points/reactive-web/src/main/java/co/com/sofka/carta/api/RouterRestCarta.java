@@ -8,7 +8,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
-
 @Configuration
 public class RouterRestCarta {
     @Bean

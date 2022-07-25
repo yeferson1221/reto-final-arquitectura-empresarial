@@ -53,7 +53,7 @@ public class HandlerJuego {
     }
 
     public Mono<ServerResponse> aumentaRondaUseCase(ServerRequest serverRequest) {
-        var id = serverRequest.pathVariable("id");
+        var id = serverRequest.pathVariable("idRonda");
         return serverRequest.bodyToMono(Juego.class)
                 .flatMap(juego -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
