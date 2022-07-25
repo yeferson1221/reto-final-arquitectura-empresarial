@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 
 @RequiredArgsConstructor
 public class JuegoUseCase {
@@ -18,32 +20,25 @@ public class JuegoUseCase {
     private final MazoUseCase mazoUseCase;
 
     public Mono<Juego> crearJuego() {
-
-        return jugadorRepository.findAll().flatMap(jugador -> {
+        return jugadorRepository
+                .findAll()
+                .flatMap(jugador -> {
                     return mazoUseCase.crearMazo()
                             .map(mazo -> {
                                 jugador.setMazo(mazo);
                                 return jugador;
                             });
-                }).collectList()
-                .map(jugador -> Juego.builder().jugadores(jugador).build())
+                })
+                .collectList()
+                .map(jugador -> Juego.builder()
+                        .jugadores(jugador)
+                        .build())
                 .flatMap(juegoRepository::save);
     }
 
     /**
-     * AL momento de crear el juego se debe generar un mazo de 5 cartas y
-     * enviarlo.
-     */
-    public void obtenerMazo() {
-
-    }
-
-
-    /**
      * Obtener el ganador de la ronda, de las cartas en juego
      * quien tiene la mayor valor y retornar ese jugador.
-     *
-     * @return
      */
     public Mono<Jugador> obtenerGanador() {
         return Mono.empty();
@@ -54,11 +49,10 @@ public class JuegoUseCase {
     }
 
     public Mono<Juego> retirarse(String id, String idJuego) {
-
         return juegoRepository.findById(idJuego).map(juego -> {
             Jugador jugador = juego.getJugadores()
                     .stream()
-                    .filter(jugador1 -> jugador1.getId() == id).findFirst().get();
+                    .filter(jugador1 -> Objects.equals(jugador1.getId(), id)).findFirst().get();
 
             juego.getJugadores()
                     .remove(jugador);
@@ -70,5 +64,13 @@ public class JuegoUseCase {
 
     public Flux<Carta> pasarCartasApostadas() {
         return Flux.just(new Carta());
+    }
+
+    public Mono<Juego> aumentarRonda(String idJuego) {
+        return juegoRepository.findById(idJuego)
+                .map(ronda -> {
+                    ronda.setRonda(ronda.getRonda() + 1);
+                    return ronda;
+                }).flatMap(juegoRepository::save);
     }
 }

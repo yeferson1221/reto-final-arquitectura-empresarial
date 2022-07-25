@@ -22,11 +22,11 @@ public class HandlerJuego {
                 .body(juegoUseCase.crearJuego(), Juego.class);
     }
 
-    public Flux<Carta> pasarCartasApostadas(ServerRequest serverRequest) {
+    public Flux<Carta> pasarCartasApostadasUseCase(ServerRequest serverRequest) {
         return juegoUseCase.pasarCartasApostadas();
     }
 
-    public Mono<ServerResponse> eliminarJugador(ServerRequest serverRequest){
+    public Mono<ServerResponse> eliminarJugadorUseCase(ServerRequest serverRequest){
         var id = serverRequest.pathVariable("idjugador");
        // var juego = serverRequest.pathVariable("idjuego");
         var juego="";
@@ -34,5 +34,13 @@ public class HandlerJuego {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON) // expone la respuesta en formato json depende dle mediatype
                 .body(juegoUseCase.retirarse(id, juego), Juego.class);
+    }
+
+    public Mono<ServerResponse> aumentaRondaUseCase(ServerRequest serverRequest) {
+        var id = serverRequest.pathVariable("id");
+        return serverRequest.bodyToMono(Juego.class)
+                .flatMap(juego -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(juegoUseCase.aumentarRonda(id), Juego.class));
     }
 }
