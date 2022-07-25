@@ -6,6 +6,6 @@ dependencies {
     implementation 'io.micrometer:micrometer-registry-prometheus'
 }
 
-test{
+test {
     useJUnitPlatform()
 }

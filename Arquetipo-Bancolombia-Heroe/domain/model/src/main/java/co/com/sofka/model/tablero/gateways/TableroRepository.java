@@ -9,4 +9,5 @@ public interface TableroRepository {
     Mono<Tablero> save(Tablero tablero);
 
     Flux<Tablero> findAll();
+
 }
