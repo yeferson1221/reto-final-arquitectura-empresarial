@@ -14,8 +14,6 @@ public class RouterRestTablero {
     @Bean
     public RouterFunction<ServerResponse> routerFunctionTablero(HandlerTablero handlerTablero) {
         return route(POST("/api/tablero"), handlerTablero::crearTableroUseCase)
-                .andRoute(GET("/api/tablero"), handlerTablero::listarTableroUseCase)
-                .andRoute(GET("/api/ganador/ronda"), handlerTablero::mostrarGanadorRonda)
-                .andRoute(GET("/api/ganador/juego"), handlerTablero::mostrarGanadorJuego);
+                .andRoute(GET("/api/tablero"), handlerTablero::listarTableroUseCase);
     }
 }

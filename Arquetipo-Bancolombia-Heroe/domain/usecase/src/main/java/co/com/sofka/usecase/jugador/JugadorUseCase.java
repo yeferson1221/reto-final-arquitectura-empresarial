@@ -1,6 +1,5 @@
 package co.com.sofka.usecase.jugador;
 
-import co.com.sofka.model.juego.Juego;
 import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,13 +26,4 @@ public class JugadorUseCase {
     public Mono<Jugador> actualizarJugador(String id, co.com.sofka.model.jugador.Jugador jugador) {
         return repository.update(id, jugador);
     }
-
-    public Mono<Jugador> apostarCarta(String id, Jugador jugador) {
-        return Mono.just(new Jugador());
-    }
-
-    public Mono<Jugador> retirarse(String id, Juego juego) {
-        return Mono.just(new Jugador());
-    }
-
 }

@@ -13,8 +13,7 @@ public class RouterRestMazo {
 
     @Bean
     public RouterFunction<ServerResponse> routerFunctionMazo(HandlerMazo handlerMazo) {
-
         return route(GET("/api/mazo"), handlerMazo::crearMazoUseCase)
-                .andRoute(GET("/api/mazo/listar"), handlerMazo::listarMazoUseCase);
+                .andRoute(GET("/api/mazo"), handlerMazo::listarMazoUseCase);
     }
 }
