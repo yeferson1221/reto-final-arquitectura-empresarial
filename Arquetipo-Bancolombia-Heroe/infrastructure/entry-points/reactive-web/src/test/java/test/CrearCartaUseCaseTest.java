@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+import static org.mockito.Mockito.when;
 
 class CrearCartaUseCaseTest {
-
     @InjectMocks
     private CartaUseCase useCaseTest;
-
     @Mock
     private CartaRepository cartaRepository;
 
@@ -30,16 +30,20 @@ class CrearCartaUseCaseTest {
         Carta carta = Carta.builder()
                 .id("123")
                 .nombre("Zodiac")
-                .uri("")
+                .uri("www.gogole.com")
                 .valor(5L)
                 .build();
-        var command = new Carta(carta.getId(), carta.getNombre(), carta.getValor(), carta.getUri(), carta.getEsOculta());
-
         //act
-
+        when(cartaRepository.findById("123")).thenReturn(Mono.just(carta));
         //asert
-        StepVerifier.create(useCaseTest.crearCarta(carta))
-                .assertNext(carta1 -> Assertions.assertEquals("Zodiac", carta1.getNombre().toString()))
-                .expectComplete().verify();
+        StepVerifier.create( useCaseTest.findById("123"))
+                .assertNext(carta1 ->{
+                    Assertions.assertEquals("Zodiac", carta1.getNombre());
+                    Assertions.assertEquals("123", carta1.getId());
+                } )
+                .expectComplete()
+                .verify();
     }
+
+
 }

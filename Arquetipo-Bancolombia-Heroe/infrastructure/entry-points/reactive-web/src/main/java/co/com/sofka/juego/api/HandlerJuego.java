@@ -30,14 +30,7 @@ public class HandlerJuego {
                 .body(juegoUseCase.obtenerGanadorJuego(idJuego), Jugador.class);
     }
 
-    public Mono<ServerResponse> apostarCartaUseCase(ServerRequest serverRequest) {
-        var id = serverRequest.pathVariable("id");
-        return serverRequest
-                .bodyToMono(Jugador.class)
-                .flatMap(jugador -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(juegoUseCase.apostarCarta(id, jugador), Jugador.class));
-    }
+
 
     public Mono<ServerResponse> retirarseUseCase(ServerRequest serverRequest) {
         var id = serverRequest.pathVariable("idjugador");

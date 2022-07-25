@@ -47,10 +47,6 @@ public class JuegoUseCase {
 
     }
 
-    public Mono<Jugador> apostarCarta(String idJuego, Jugador jugador) {
-        return null;
-    }
-
     public Mono<Juego> retirarse(String id, String idJuego) {
         return juegoRepository.findById(idJuego).map(juego -> {
             Jugador jugador = juego.getJugadores()
