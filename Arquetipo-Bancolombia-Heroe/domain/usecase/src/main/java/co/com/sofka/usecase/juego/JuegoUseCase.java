@@ -37,48 +37,18 @@ public class JuegoUseCase {
     }
 
     /**
-     * <<<<<<< HEAD
-     * =======
      * Obtener el ganador de la ronda, de las cartas en juego
      * quien tiene la mayor valor y retornar ese jugador.
-     *
-     * @return
      */
     public Mono<Jugador> obtenerGanadorJuego(String idJuego) {
-
         return jugadorRepository.findAll().collectList()
                 .map(jugadors -> jugadors.stream()
                         .max(Comparator.comparing(Jugador::getPuntaje)).get());
 
     }
 
-
-    /**
-     * >>>>>>> origin/jd
-     * Obtener el ganador de la ronda, de las cartas en juego
-     * quien tiene la mayor valor y retornar ese jugador.
-     */
-    public Mono<Jugador> apostar(String idJuego) {
-
-        return jugadorRepository.findAll().collectList()
-                .map(jugadors -> jugadors.stream().max(Comparator.comparing(Jugador::getPuntaje)).get());
-
-
-    }
-
-    /**
-     * Obtener el ganador de la ronda, de las cartas en juego
-     * quien tiene la mayor valor y retornar ese jugador.
-     *
-     * @return
-     */
-    public Mono<Jugador> obtenerGanador() {
-
-        return Mono.empty();
-    }
-
-    public Flux<Juego> listarJuego() {
-        return juegoRepository.findAll();
+    public Mono<Jugador> apostarCarta(String idJuego, Jugador jugador) {
+        return null;
     }
 
     public Mono<Juego> retirarse(String id, String idJuego) {
@@ -94,7 +64,7 @@ public class JuegoUseCase {
         }).cast(Juego.class).flatMap(juegoRepository::save);
     }
 
-    public Flux<Carta> pasarCartasApostadas() {
+    public Flux<Carta> pasarCartasAlGanador() {
         return Flux.just(new Carta());
     }
 

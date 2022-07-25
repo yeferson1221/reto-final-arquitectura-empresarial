@@ -14,7 +14,6 @@ import reactor.core.publisher.Mono;
 public class HandlerTablero {
     private final TableroUseCase tableroUseCase;
 
-
     public Mono<ServerResponse> crearTableroUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Tablero.class)
                 .flatMap(tablero -> ServerResponse.ok()
@@ -26,13 +25,5 @@ public class HandlerTablero {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(tableroUseCase.listarTablero(), Tablero.class);
-    }
-
-    public Mono<ServerResponse> mostrarGanadorRonda(ServerRequest serverRequest) {
-        return null;
-    }
-
-    public Mono<ServerResponse> mostrarGanadorJuego(ServerRequest serverRequest) {
-        return null;
     }
 }

@@ -23,17 +23,33 @@ public class HandlerJuego {
                 .body(juegoUseCase.crearJuego(), Juego.class);
     }
 
-    public Flux<Carta> pasarCartasApostadasUseCase(ServerRequest serverRequest) {
-        return juegoUseCase.pasarCartasApostadas();
+    public Mono<ServerResponse> obtenerGanadorJuego(ServerRequest serverRequest) {
+        var idJuego = serverRequest.pathVariable("idjuego");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(juegoUseCase.obtenerGanadorJuego(idJuego), Jugador.class);
     }
 
-    public Mono<ServerResponse> eliminarJugadorUseCase(ServerRequest serverRequest) {
+    public Mono<ServerResponse> apostarCartaUseCase(ServerRequest serverRequest) {
+        var id = serverRequest.pathVariable("id");
+        return serverRequest
+                .bodyToMono(Jugador.class)
+                .flatMap(jugador -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(juegoUseCase.apostarCarta(id, jugador), Jugador.class));
+    }
+
+    public Mono<ServerResponse> retirarseUseCase(ServerRequest serverRequest) {
         var id = serverRequest.pathVariable("idjugador");
         var juego = serverRequest.pathVariable("idjuego");
 
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON) // expone la respuesta en formato json depende dle mediatype
                 .body(juegoUseCase.retirarse(id, juego), Juego.class);
+    }
+
+    public Flux<Carta> pasarCartasAlGanadorUseCase(ServerRequest serverRequest) {
+        return juegoUseCase.pasarCartasAlGanador();
     }
 
     public Mono<ServerResponse> aumentaRondaUseCase(ServerRequest serverRequest) {
@@ -43,17 +59,5 @@ public class HandlerJuego {
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(juegoUseCase.aumentarRonda(id), Juego.class));
     }
-
-    /**
-     * Handler para obtener el el ganador del juego.
-     *
-     * @param serverRequest Peticion
-     * @return Jugador ganador.
-     */
-    public Mono<ServerResponse> obtenerGanadorJuego(ServerRequest serverRequest) {
-        var idJuego = serverRequest.pathVariable("idjuego");
-        return ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(juegoUseCase.obtenerGanadorJuego(idJuego), Jugador.class);
-    }
 }
+

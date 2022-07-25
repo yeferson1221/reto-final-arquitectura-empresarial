@@ -16,7 +16,7 @@ public class RouterRestJugador {
     public RouterFunction<ServerResponse> routerFunctionJugador(HandlerJugador handlerJugador) {
         return route(POST("/api/jugador"), handlerJugador::crearJugadorUseCase)
                 .andRoute(GET("/api/jugador"), handlerJugador::listarJugadorUseCase)
-                .andRoute(GET("/api/jugador/{id}"), handlerJugador::listarPorId)
+                .andRoute(GET("/api/jugador/{id}"), handlerJugador::listarPorIdUseCase)
                 .andRoute(POST("/api/jugador/{id}"), handlerJugador::actualizarJugadorUseCase);
     }
 }

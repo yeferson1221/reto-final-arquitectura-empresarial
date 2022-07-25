@@ -14,8 +14,7 @@ public class RouterRestCarta {
     @Bean
     public RouterFunction<ServerResponse> routerFunctionCarta(HandlerCarta handlerCarta) {
         return route(POST("/api/carta"), handlerCarta::crearCartaUseCase)
-                .andRoute(GET("/api/carta"), handlerCarta::listarCartaUseCase)
-                .andRoute(POST("/api/carta/{id}"), handlerCarta::actualizarCartaUseCase);
-
+                .andRoute(POST("/api/carta/{id}"), handlerCarta::actualizarCartaUseCase)
+                .andRoute(GET("/api/carta"), handlerCarta::listarCartaUseCase);
     }
 }

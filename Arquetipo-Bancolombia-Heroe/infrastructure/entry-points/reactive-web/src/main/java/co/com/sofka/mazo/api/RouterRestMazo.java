@@ -6,6 +6,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
@@ -13,8 +14,7 @@ public class RouterRestMazo {
 
     @Bean
     public RouterFunction<ServerResponse> routerFunctionMazo(HandlerMazo handlerMazo) {
-
-        return route(GET("/api/mazo"), handlerMazo::crearMazoUseCase)
-                .andRoute(GET("/api/mazo/listar"), handlerMazo::listarMazoUseCase);
+        return route(POST("/api/mazo"), handlerMazo::crearMazoUseCase)
+                .andRoute(GET("/api/mazo"), handlerMazo::listarMazoUseCase);
     }
 }
