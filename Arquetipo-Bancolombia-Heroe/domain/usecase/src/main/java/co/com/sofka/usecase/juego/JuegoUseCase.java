@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Objects;
+import java.util.Comparator;
 
 
 @RequiredArgsConstructor
@@ -37,10 +37,43 @@ public class JuegoUseCase {
     }
 
     /**
+     * <<<<<<< HEAD
+     * =======
+     * Obtener el ganador de la ronda, de las cartas en juego
+     * quien tiene la mayor valor y retornar ese jugador.
+     *
+     * @return
+     */
+    public Mono<Jugador> obtenerGanadorJuego(String idJuego) {
+
+        return jugadorRepository.findAll().collectList()
+                .map(jugadors -> jugadors.stream()
+                        .max(Comparator.comparing(Jugador::getPuntaje)).get());
+
+    }
+
+
+    /**
+     * >>>>>>> origin/jd
      * Obtener el ganador de la ronda, de las cartas en juego
      * quien tiene la mayor valor y retornar ese jugador.
      */
+    public Mono<Jugador> apostar(String idJuego) {
+
+        return jugadorRepository.findAll().collectList()
+                .map(jugadors -> jugadors.stream().max(Comparator.comparing(Jugador::getPuntaje)).get());
+
+
+    }
+
+    /**
+     * Obtener el ganador de la ronda, de las cartas en juego
+     * quien tiene la mayor valor y retornar ese jugador.
+     *
+     * @return
+     */
     public Mono<Jugador> obtenerGanador() {
+
         return Mono.empty();
     }
 
@@ -52,13 +85,12 @@ public class JuegoUseCase {
         return juegoRepository.findById(idJuego).map(juego -> {
             Jugador jugador = juego.getJugadores()
                     .stream()
-                    .filter(jugador1 -> Objects.equals(jugador1.getId(), id)).findFirst().get();
+                    .filter(jugador1 -> jugador1.getId().equals(id)).findFirst().get();
 
             juego.getJugadores()
                     .remove(jugador);
 
             return juego;
-
         }).cast(Juego.class).flatMap(juegoRepository::save);
     }
 

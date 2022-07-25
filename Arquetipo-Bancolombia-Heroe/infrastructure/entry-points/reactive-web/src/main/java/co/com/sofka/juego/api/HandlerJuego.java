@@ -2,6 +2,7 @@ package co.com.sofka.juego.api;
 
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.juego.Juego;
+import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.usecase.juego.JuegoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -26,10 +27,9 @@ public class HandlerJuego {
         return juegoUseCase.pasarCartasApostadas();
     }
 
-    public Mono<ServerResponse> eliminarJugadorUseCase(ServerRequest serverRequest){
+    public Mono<ServerResponse> eliminarJugadorUseCase(ServerRequest serverRequest) {
         var id = serverRequest.pathVariable("idjugador");
-       // var juego = serverRequest.pathVariable("idjuego");
-        var juego="";
+        var juego = serverRequest.pathVariable("idjuego");
 
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON) // expone la respuesta en formato json depende dle mediatype
@@ -42,5 +42,18 @@ public class HandlerJuego {
                 .flatMap(juego -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(juegoUseCase.aumentarRonda(id), Juego.class));
+    }
+
+    /**
+     * Handler para obtener el el ganador del juego.
+     *
+     * @param serverRequest Peticion
+     * @return Jugador ganador.
+     */
+    public Mono<ServerResponse> obtenerGanadorJuego(ServerRequest serverRequest) {
+        var idJuego = serverRequest.pathVariable("idjuego");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(juegoUseCase.obtenerGanadorJuego(idJuego), Jugador.class);
     }
 }

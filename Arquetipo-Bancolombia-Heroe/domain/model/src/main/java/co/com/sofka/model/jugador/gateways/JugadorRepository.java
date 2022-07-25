@@ -13,4 +13,5 @@ public interface JugadorRepository {
     Mono<Jugador> findById(String id);
 
     Mono<Jugador> update(String id, Jugador jugador);
+
 }
