@@ -25,9 +25,9 @@ export class DashboardComponent implements OnInit {
     // })
   }
 
-  // logOut() {
-  //   this.afAuth.signOut().then(() => this.router.navigate(['/login']));
-  // }
+   logOut() {
+   this.afAuth.signOut().then(() => this.router.navigate(['/login']));
+   }
 
 
   
