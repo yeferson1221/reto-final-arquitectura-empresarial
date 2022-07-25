@@ -6,13 +6,21 @@ import lombok.*;
 import java.util.List;
 
 @Data
-@ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Mazo {
 
     private String id;
-    private List<Carta> mazo;
+    private List<Carta> baraja;
     private Integer cantidad;
+
+    @Override
+    public String toString() {
+        return "Mazo{" +
+                "id='" + id + '\'' +
+                ", mazo=" + baraja +
+                ", cantidad=" + cantidad +
+                '}';
+    }
 }

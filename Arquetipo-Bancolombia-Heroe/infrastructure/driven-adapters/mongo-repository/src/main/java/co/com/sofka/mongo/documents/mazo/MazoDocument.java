@@ -17,6 +17,6 @@ public class MazoDocument {
 
     @Id
     private String id;
-    private List<Carta> mazo;
+    private List<Carta> baraja;
     private Integer cantidad;
 }
