@@ -20,9 +20,10 @@ public class JuegoUseCase {
     private final MazoUseCase mazoUseCase;
 
     /**
-     *Obtenemos todos los jugadores, la aplanamos y la transformamos con flatmap
+     * Obtenemos todos los jugadores, la aplanamos y la transformamos con flatmap
      * para a cada jugador setttear el mazo, haciendo uso del metodo mazoUseCase.crearMazo()
      * coleccionamos y cada jugador lo agregamos al nuevo juego, finalmente guardamos en bd.
+     *
      * @return
      */
     public Mono<Juego> crearJuego() {
@@ -51,8 +52,10 @@ public class JuegoUseCase {
      */
     public Mono<Jugador> obtenerGanadorJuego(String idJuego) {
 
-        return juegoRepository.findById(idJuego).map(juego -> juego.getJugadores().stream()
-                  .max(Comparator.comparing(Jugador::getPuntaje)).get());
+        return juegoRepository.findById(idJuego)
+                .map(juego -> juego.getJugadores().stream()
+                        .max(Comparator.comparing(Jugador::getPuntaje))
+                        .get());
 
         /*
         return jugadorRepository.findAll().collectList()
@@ -68,20 +71,23 @@ public class JuegoUseCase {
      * y removemos de la lista; finalmente guardamos en bd.
      *
      * @param idJugador jugador a ser eliminado
-     * @param idJuego idJuego
+     * @param idJuego   idJuego
      * @return juego actualizado.
      */
     public Mono<Juego> retirarse(String idJugador, String idJuego) {
-        return juegoRepository.findById(idJuego).map(juego -> {
-            Jugador jugador = juego.getJugadores()
-                    .stream()
-                    .filter(jugador1 -> jugador1.getId().equals(idJugador)).findFirst().get();
+        return juegoRepository.findById(idJuego)
+                .map(juego -> {
+                    Jugador jugador = juego.getJugadores()
+                            .stream()
+                            .filter(jugador1 -> jugador1.getId().equals(idJugador))
+                            .findFirst()
+                            .get();
 
-            juego.getJugadores()
-                    .remove(jugador);
+                    juego.getJugadores()
+                            .remove(jugador);
 
-            return juego;
-        }).cast(Juego.class).flatMap(juegoRepository::save);
+                    return juego;
+                }).cast(Juego.class).flatMap(juegoRepository::save);
     }
 
     public Flux<Carta> pasarCartasAlGanador() {

@@ -24,13 +24,14 @@ public class MazoUseCase {
      */
     public Mono<Mazo> crearMazo() {
         return cartaRepository.findAll() // nos d flux de cartas
-                .collectList() // mono de lista de cartas
+                .collectList()
                 .map(cartas -> {
                     Collections.shuffle(cartas); // lo que hago es mapear  se aplica shuffle barajar
                     return cartas;
-                }) // retornar ordenado
-                .map(cartas -> cartas.subList(0, 5)) // traigame solo 5 utilizando metodo sublist
-                .map(cartas -> Mazo.builder().baraja(cartas).cantidad(5).id(String.valueOf(Math.random())).build()); // construir un mazo
+                })
+                .map(cartas -> cartas.subList(0, 5))
+                .map(cartas -> Mazo.builder().baraja(cartas).cantidad(cartas.size()).id(String.valueOf(Math.random()))
+                        .build()); // construir un mazo
     }
 
     public Flux<Mazo> listarMazo() {

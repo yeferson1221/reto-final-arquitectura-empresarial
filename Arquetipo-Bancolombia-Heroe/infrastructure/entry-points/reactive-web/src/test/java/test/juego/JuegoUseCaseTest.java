@@ -2,6 +2,8 @@ package test.juego;
 
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.carta.gateways.CartaRepository;
+import co.com.sofka.model.juego.Juego;
+import co.com.sofka.model.juego.gateways.JuegoRepository;
 import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
 import co.com.sofka.usecase.juego.JuegoUseCase;
@@ -14,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.util.ArrayList;
@@ -34,6 +37,9 @@ class JuegoUseCaseTest {
 
     @Mock
     private CartaRepository cartaRepository;
+
+    @Mock
+    private JuegoRepository juegoRepository;
 
     @InjectMocks
     private JugadorUseCase jugadorUseCase;
@@ -121,21 +127,20 @@ class JuegoUseCaseTest {
         listJugador.add(jugador3);
         listJugador.add(jugador4);
 
+        Juego juego = Juego.builder().id("9876")
+                .jugadores(listJugador)
+                .ronda("1")
+                .build();
+
         when(jugadorRepository.findAll()).thenReturn(Flux.fromStream(listJugador.stream()));
         when(cartaRepository.findAll()).thenReturn(Flux.fromStream(listCarta.stream()));
-
-        StepVerifier.create(jugadorRepository.findAll().collectList())
-                .assertNext(jugador -> Assertions.assertEquals(4, jugador.size()))
-                .expectComplete()
-                .verify();
+        when(juegoRepository.save(juego).thenReturn(Mono.just(juego)));
+        when(mazoUseCase.crearMazo().thenReturn(Flux.fromStream(listCarta.stream())));
 
         StepVerifier.create(juegoUseCase.crearJuego())
-                .assertNext(juego -> Assertions.assertEquals("", juego.getId()))
+                .assertNext(juego1 -> Assertions.assertEquals("4",juego1.getJugadores().size()))
+                .assertNext(juego1 -> Assertions.assertNotNull(juego1.getId()))
                 .expectComplete()
                 .verify();
-    }
-
-    @Test
-    void retirarse() {
     }
 }

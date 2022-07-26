@@ -48,9 +48,9 @@ public class TableroUseCase {
         return tableroRepository.buscarTableroIdJuegoIdRonda(idJuego, idRonda)
                 .flatMap(tablero -> cartaUseCase.findById(tablero.getIdcarta()))
                 .collectList()
-                .map(cartas -> cartas.stream().max(Comparator.comparing(Carta::getValor)).get())
+                .map(cartas -> cartas.stream()
+                        .max(Comparator.comparing(Carta::getValor)).get())
                 .flatMap(carta -> tableroRepository.buscarTableroIdJuegoIdRondaIdcarta(idJuego, idRonda, carta.getId()))
                 .flatMap(tablero -> jugadorRepository.findById(tablero.getIdjugador()));
-
     }
 }
