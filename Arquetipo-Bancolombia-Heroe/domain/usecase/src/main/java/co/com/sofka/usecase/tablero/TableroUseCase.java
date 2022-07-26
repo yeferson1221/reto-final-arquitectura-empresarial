@@ -39,17 +39,18 @@ public class TableroUseCase {
     /**
      * ColletList espera hasta que se complete el flujo y los colelcciona.
      * .get() extraer el valor del optional.
+     *
      * @param idRonda
      * @param idJuego
      * @return
      */
-    public Mono<Jugador> obtenerGanadorRonda(String idRonda, String  idJuego){
-           return tableroRepository.buscarTableroIdJuegoIdRonda(idJuego, idRonda)
-                   .flatMap(tablero -> cartaUseCase.findById(tablero.getIdcarta()))
-                   .collectList()
-                   .map(cartas -> cartas.stream().max( Comparator.comparing(Carta::getValor)).get())
-                   .flatMap(carta -> tableroRepository.buscarTableroIdJuegoIdRondaIdcarta(idJuego,idRonda,carta.getId()))
-                   .flatMap(tablero -> jugadorRepository.findById(tablero.getIdjugador()));
+    public Mono<Jugador> obtenerGanadorRonda(String idRonda, String idJuego) {
+        return tableroRepository.buscarTableroIdJuegoIdRonda(idJuego, idRonda)
+                .flatMap(tablero -> cartaUseCase.findById(tablero.getIdcarta()))
+                .collectList()
+                .map(cartas -> cartas.stream().max(Comparator.comparing(Carta::getValor)).get())
+                .flatMap(carta -> tableroRepository.buscarTableroIdJuegoIdRondaIdcarta(idJuego, idRonda, carta.getId()))
+                .flatMap(tablero -> jugadorRepository.findById(tablero.getIdjugador()));
 
     }
 }
