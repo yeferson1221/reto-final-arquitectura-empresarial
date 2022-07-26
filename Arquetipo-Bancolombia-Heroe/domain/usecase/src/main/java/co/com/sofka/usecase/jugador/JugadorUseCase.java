@@ -23,7 +23,7 @@ public class JugadorUseCase {
         return repository.findById(id);
     }
 
-    public Mono<Jugador> actualizarJugador(String id, co.com.sofka.model.jugador.Jugador jugador) {
+    public Mono<Jugador> actualizarJugador(String id, Jugador jugador) {
         return repository.update(id, jugador);
     }
 }

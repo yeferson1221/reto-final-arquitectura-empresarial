@@ -1,11 +1,12 @@
 package co.com.sofka.model.jugador;
 
-import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.mazo.Mazo;
-import lombok.*;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
 
 @Data
 @Builder(toBuilder = true)
