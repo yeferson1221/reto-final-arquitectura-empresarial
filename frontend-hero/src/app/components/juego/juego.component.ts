@@ -36,7 +36,7 @@ export class JuegoComponent implements OnInit {
       console.log(this.jugadores)
     }, error => {
       console.log(error);
-    
+
     })
   }
 
@@ -49,49 +49,49 @@ export class JuegoComponent implements OnInit {
         mazo.baraja.forEach((mazo)=>{
            this.barajas.push(mazo)
           //var mazoJugador = jugador.mazo
-          
+
          console.log(mazo.valor+"este es el valor")
          console.log(mazo.uri+" esta la uri "+mazo.nombre)
 
         })
-      
+
       }
-          
+
         )
 
       console.log(this.mazos)
     }, error => {
       console.log(error);
-    
+
     })
   }
   obtenerJuego(){
     this.juegoService.optenerJuego().subscribe(data => {
       this.juegos.push(data);
       this.juegos.forEach((juego)=>{
-        
+
         juego.jugadores.forEach((jugador)=>{
-           
+
           //var mazoJugador = jugador.mazo
-          
+
          console.log(jugador.nombre)
 
 
 
         })
-      
+
       }
-          
+
         )
-      
+
       console.log(this.juegos)
     }, error => {
       console.log(error);
-    
+
     })
   }
 
 
-  
+
 
 }
