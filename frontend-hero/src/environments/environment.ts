@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyBSjL8R_3k4fDOE7yk14xYC-IPtxv2aR9o",
-    authDomain: "practica-firebase-d5a24.firebaseapp.com",
-    projectId: "practica-firebase-d5a24",
-    storageBucket: "practica-firebase-d5a24.appspot.com",
-    messagingSenderId: "727876376353",
-    appId: "1:727876376353:web:b27224f767032b6e085060",
-    measurementId: "G-WEM174T8ET"
+  firebaseConfig : {
+    apiKey: "AIzaSyC9ePxSVzijNuVKtg5S_SfYkKQeY5LzZto",
+    authDomain: "reto-final-8900f.firebaseapp.com",
+    projectId: "reto-final-8900f",
+    storageBucket: "reto-final-8900f.appspot.com",
+    messagingSenderId: "348003974305",
+    appId: "1:348003974305:web:a2ec7eed53f43a7c2fc4e0",
+    measurementId: "G-PWGQQNJE7Z"
   }
 };
 
