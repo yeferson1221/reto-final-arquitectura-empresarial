@@ -97,7 +97,7 @@ class MazoUseCaseTest {
 
 
         StepVerifier.create( useCaseTest.crearMazo())
-                .assertNext(mazo -> Assertions.assertEquals(5,mazo.getMazo().size()))
+                .assertNext(mazo -> Assertions.assertEquals(5,mazo.getBaraja().size()))
                 .expectComplete()
                 .verify();
     }

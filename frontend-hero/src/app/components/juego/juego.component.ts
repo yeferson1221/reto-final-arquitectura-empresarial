@@ -93,6 +93,7 @@ export class JuegoComponent implements OnInit {
     
     })
   }
+  
   obtenerJuego(){
     this.juegoService.optenerJuego().subscribe(data => {
       this.juegos.push(data);
@@ -111,7 +112,6 @@ export class JuegoComponent implements OnInit {
           //   })
            
           // })
-
        })
       
       }      
