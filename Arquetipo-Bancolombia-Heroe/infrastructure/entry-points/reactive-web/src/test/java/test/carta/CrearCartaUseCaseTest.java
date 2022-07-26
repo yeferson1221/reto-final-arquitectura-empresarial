@@ -1,4 +1,4 @@
-package test;
+package test.carta;
 
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.carta.gateways.CartaRepository;
@@ -9,13 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-class ActualizarCartaUseCaseTest {
+import static org.mockito.Mockito.when;
 
+class CrearCartaUseCaseTest {
     @InjectMocks
-    private CartaUseCase cartaUseCaseTest;
-
+    private CartaUseCase useCaseTest;
     @Mock
     private CartaRepository cartaRepository;
 
@@ -25,22 +26,23 @@ class ActualizarCartaUseCaseTest {
     }
 
     @Test
-    void actualizarCartaCorrecto() {
-        //arrange
+    void crearCartaCorrecta() {
         Carta carta = Carta.builder()
-                .id("987")
+                .id("123")
                 .nombre("Zodiac")
-                .uri("")
+                .uri("www.gogole.com")
                 .valor(5L)
                 .build();
 
-        var command = cartaRepository.update(carta.getId(), carta);
-
         //act
+        when(cartaRepository.findById("123")).thenReturn(Mono.just(carta));
 
         //asert
-        StepVerifier.create(cartaUseCaseTest.actualizarCarta(carta.getId(), carta))
-                .assertNext(carta1 -> Assertions.assertEquals("987", carta1.getId()))
+        StepVerifier.create( useCaseTest.findById("123"))
+                .assertNext(carta1 -> {
+                    Assertions.assertEquals("Zodiac", carta1.getNombre());
+                    Assertions.assertEquals("123", carta1.getId());
+                })
                 .expectComplete()
                 .verify();
     }
