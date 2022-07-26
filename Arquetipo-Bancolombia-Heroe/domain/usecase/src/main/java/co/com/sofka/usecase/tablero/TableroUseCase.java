@@ -1,6 +1,5 @@
 package co.com.sofka.usecase.tablero;
 
-
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.carta.gateways.CartaRepository;
 import co.com.sofka.model.jugador.Jugador;
@@ -13,7 +12,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Comparator;
-
 
 @RequiredArgsConstructor
 public class TableroUseCase {

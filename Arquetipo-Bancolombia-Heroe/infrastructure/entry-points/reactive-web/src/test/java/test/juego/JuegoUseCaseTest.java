@@ -5,6 +5,7 @@ import co.com.sofka.model.carta.gateways.CartaRepository;
 import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.jugador.gateways.JugadorRepository;
 import co.com.sofka.usecase.juego.JuegoUseCase;
+import co.com.sofka.usecase.jugador.JugadorUseCase;
 import co.com.sofka.usecase.mazo.MazoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,6 @@ import reactor.test.StepVerifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class JuegoUseCaseTest {
@@ -35,6 +35,8 @@ class JuegoUseCaseTest {
     @Mock
     private CartaRepository cartaRepository;
 
+    @InjectMocks
+    private JugadorUseCase jugadorUseCase;
 
 
     @BeforeEach
@@ -114,13 +116,18 @@ class JuegoUseCaseTest {
                 .id("654")
                 .nombre("Stella").build();
 
-
-        //mockiamos el metodo findAll pasando la lista creada anteriormente
-        when(cartaRepository.findAll()).thenReturn(Flux.fromStream(listCarta.stream()));
+        listJugador.add(jugador1);
+        listJugador.add(jugador2);
+        listJugador.add(jugador3);
+        listJugador.add(jugador4);
 
         when(jugadorRepository.findAll()).thenReturn(Flux.fromStream(listJugador.stream()));
+        when(cartaRepository.findAll()).thenReturn(Flux.fromStream(listCarta.stream()));
 
-
+        StepVerifier.create(jugadorRepository.findAll().collectList())
+                .assertNext(jugador -> Assertions.assertEquals(4, jugador.size()))
+                .expectComplete()
+                .verify();
 
         StepVerifier.create(juegoUseCase.crearJuego())
                 .assertNext(juego -> Assertions.assertEquals("", juego.getId()))
