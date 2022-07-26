@@ -1,5 +1,6 @@
 package co.com.sofka.tablero.api;
 
+import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.tablero.Tablero;
 import co.com.sofka.usecase.tablero.TableroUseCase;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,6 @@ import reactor.core.publisher.Mono;
 public class HandlerTablero {
     private final TableroUseCase tableroUseCase;
 
-
     public Mono<ServerResponse> crearTableroUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Tablero.class)
                 .flatMap(tablero -> ServerResponse.ok()
@@ -28,11 +28,14 @@ public class HandlerTablero {
                 .body(tableroUseCase.listarTablero(), Tablero.class);
     }
 
-    public Mono<ServerResponse> mostrarGanadorRonda(ServerRequest serverRequest) {
-        return null;
-    }
 
-    public Mono<ServerResponse> mostrarGanadorJuego(ServerRequest serverRequest) {
-        return null;
+
+    public Mono<ServerResponse> obtenerGanadorRonda(ServerRequest serverRequest) {
+        var idRonda = serverRequest.pathVariable("idronda");
+        var idJuego = serverRequest.pathVariable("idjuego");
+
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(tableroUseCase.obtenerGanadorRonda(idRonda,idJuego), Jugador.class);
     }
 }

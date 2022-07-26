@@ -16,7 +16,6 @@ public class HandlerJugador {
 
     private final JugadorUseCase judadorUseCase;
 
-
     public Mono<ServerResponse> crearJugadorUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Jugador.class)
                 .flatMap(jugador -> ServerResponse.ok()
@@ -30,7 +29,7 @@ public class HandlerJugador {
                 .body(judadorUseCase.listarJugador(), Jugador.class);
     }
 
-    public Mono<ServerResponse> listarPorId(ServerRequest serverRequest) {
+    public Mono<ServerResponse> listarPorIdUseCase(ServerRequest serverRequest) {
         var id = serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -43,14 +42,5 @@ public class HandlerJugador {
                 .flatMap(element -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(judadorUseCase.actualizarJugador(id, element), Jugador.class));
-    }
-
-    public Mono<ServerResponse> apostarCarta(ServerRequest serverRequest) {
-        var id = serverRequest.pathVariable("id");
-        return serverRequest
-                .bodyToMono(Jugador.class)
-                .flatMap(element -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(judadorUseCase.apostarCarta(id, element), Jugador.class));
     }
 }

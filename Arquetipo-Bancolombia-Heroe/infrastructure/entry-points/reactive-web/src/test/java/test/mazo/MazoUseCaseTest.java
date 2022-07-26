@@ -1,4 +1,4 @@
-package test;
+package test.mazo;
 
 import co.com.sofka.model.carta.Carta;
 import co.com.sofka.model.carta.gateways.CartaRepository;

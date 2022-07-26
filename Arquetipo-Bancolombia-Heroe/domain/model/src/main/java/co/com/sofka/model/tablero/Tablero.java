@@ -1,7 +1,10 @@
 package co.com.sofka.model.tablero;
+
 import co.com.sofka.model.carta.Carta;
-import co.com.sofka.model.juego.Juego;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Map;
 
@@ -12,15 +15,22 @@ import java.util.Map;
 public class Tablero {
 
     private String id;
-    private Map<String,Carta> carta;
+    private String idjugador;
+    private String idcarta;
     private Integer tiempo;
+    private String ronda;
+    private String idJuego;
+
 
     @Override
     public String toString() {
         return "Tablero{" +
                 "id='" + id + '\'' +
-                ", carta=" + carta +
+                ", carta=" + idcarta +
+                ", jugador=" + idjugador +
                 ", tiempo=" + tiempo +
+                ", ronda=" + ronda +
                 '}';
     }
+
 }

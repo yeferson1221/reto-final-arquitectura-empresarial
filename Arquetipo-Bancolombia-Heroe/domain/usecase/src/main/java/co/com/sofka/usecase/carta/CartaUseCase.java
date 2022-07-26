@@ -21,4 +21,8 @@ public class CartaUseCase {
     public Flux<Carta> listarCarta() {
         return repository.findAll();
     }
+
+    public Mono<Carta> findById(String idCarta){
+        return repository.findById(idCarta);
+    }
 }

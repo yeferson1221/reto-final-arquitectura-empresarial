@@ -16,7 +16,6 @@ public class HandlerMazo {
 
     private final MazoUseCase mazoUseCase;
 
-
     public Mono<ServerResponse> crearMazoUseCase(ServerRequest serverRequest) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(mazoUseCase.crearMazo(), Mazo.class);

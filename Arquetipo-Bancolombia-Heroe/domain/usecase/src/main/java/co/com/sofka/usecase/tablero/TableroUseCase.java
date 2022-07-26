@@ -1,19 +1,30 @@
 package co.com.sofka.usecase.tablero;
 
+import co.com.sofka.model.carta.Carta;
+import co.com.sofka.model.carta.gateways.CartaRepository;
 import co.com.sofka.model.jugador.Jugador;
+import co.com.sofka.model.jugador.gateways.JugadorRepository;
 import co.com.sofka.model.tablero.Tablero;
 import co.com.sofka.model.tablero.gateways.TableroRepository;
-import co.com.sofka.usecase.jugador.JugadorUseCase;
+import co.com.sofka.usecase.carta.CartaUseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Comparator;
+
 @RequiredArgsConstructor
 public class TableroUseCase {
     private final TableroRepository tableroRepository;
-    private final JugadorUseCase jugadorUseCase;
+    private final JugadorRepository jugadorRepository;
+
+    private final CartaRepository cartaRepository;
+
+    private final CartaUseCase cartaUseCase;
 
     public Mono<Tablero> crearTablero(Tablero tablero) {
+        //cuando se guarda verificar si estan todas las apuesas
+
         return tableroRepository.save(tablero);
     }
 
@@ -21,40 +32,24 @@ public class TableroUseCase {
         return tableroRepository.findAll();
     }
 
-    public Mono<Tablero> mostrarGanadorJuego(String id, Jugador jugador) {
-        return Mono.just(new Tablero());
+    public Mono<Tablero> listarTableroById(String idJuego) {
+        return tableroRepository.findById(idJuego);
     }
 
-//    public Mono<Jugador> mostrarGanadorRonda(String idJugador, String idCarta) {
-//
-//        return jugadorUseCase
-//                .listarPorId(idJugador)
-//                .map(jugador -> {
-//                    Mazo mazo = jugador.getMazo()
-//                            .stream()
-//                            .filter(jugador1 -> jugador1.getId() == id).findFirst().get();
-//
-//                    jugador.getJugadores()
-//                            .remove(jugador);
-//
-//                    return jugador;
-//
-//                }).cast(Juego.class).flatMap(juegoRepository::save);
-//    }
+    /**
+     * ColletList espera hasta que se complete el flujo y los colelcciona.
+     * .get() extraer el valor del optional.
+     * @param idRonda
+     * @param idJuego
+     * @return
+     */
+    public Mono<Jugador> obtenerGanadorRonda(String idRonda, String  idJuego){
+           return tableroRepository.buscarTableroIdJuegoIdRonda(idJuego, idRonda)
+                   .flatMap(tablero -> cartaUseCase.findById(tablero.getIdcarta()))
+                   .collectList()
+                   .map(cartas -> cartas.stream().max( Comparator.comparing(Carta::getValor)).get())
+                   .flatMap(carta -> tableroRepository.buscarTableroIdJuegoIdRondaIdcarta(idJuego,idRonda,carta.getId()))
+                   .flatMap(tablero -> jugadorRepository.findById(tablero.getIdjugador()));
 
-//    public Mono<Juego> retirarse(String id, String idJuego) {
-//
-//        return juegoRepository.findById(idJuego).map(juego -> {
-//            Jugador jugador = juego.getJugadores()
-//                    .stream()
-//                    .filter(jugador1 -> jugador1.getId() == id).findFirst().get();
-//
-//            juego.getJugadores()
-//                    .remove(jugador);
-//
-//            return juego;
-//
-//        }).cast(Juego.class).flatMap(juegoRepository::save);
-//
-//    }
+    }
 }

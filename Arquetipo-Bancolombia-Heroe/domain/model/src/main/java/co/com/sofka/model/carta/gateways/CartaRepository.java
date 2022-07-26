@@ -11,4 +11,6 @@ public interface CartaRepository {
     Flux<Carta> findAll();
 
     Mono<Carta> update(String id, Carta carta);
+
+    Mono<Carta> findById(String idCarta);
 }
