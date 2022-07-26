@@ -1,5 +1,6 @@
 package co.com.sofka.tablero.api;
 
+import co.com.sofka.model.jugador.Jugador;
 import co.com.sofka.model.tablero.Tablero;
 import co.com.sofka.usecase.tablero.TableroUseCase;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,16 @@ public class HandlerTablero {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(tableroUseCase.listarTablero(), Tablero.class);
+    }
+
+
+
+    public Mono<ServerResponse> obtenerGanadorRonda(ServerRequest serverRequest) {
+        var idRonda = serverRequest.pathVariable("idronda");
+        var idJuego = serverRequest.pathVariable("idjuego");
+
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(tableroUseCase.obtenerGanadorRonda(idRonda,idJuego), Jugador.class);
     }
 }

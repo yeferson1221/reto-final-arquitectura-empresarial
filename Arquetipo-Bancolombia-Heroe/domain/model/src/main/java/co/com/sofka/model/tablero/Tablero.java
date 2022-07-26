@@ -15,16 +15,19 @@ import java.util.Map;
 public class Tablero {
 
     private String id;
-    private Map<String, String> carta;
+    private String idjugador;
+    private String idcarta;
     private Integer tiempo;
     private String ronda;
+    private String idJuego;
 
 
     @Override
     public String toString() {
         return "Tablero{" +
                 "id='" + id + '\'' +
-                ", carta=" + carta +
+                ", carta=" + idcarta +
+                ", jugador=" + idjugador +
                 ", tiempo=" + tiempo +
                 ", ronda=" + ronda +
                 '}';

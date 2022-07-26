@@ -19,6 +19,12 @@ public class JuegoUseCase {
     private final JugadorRepository jugadorRepository;
     private final MazoUseCase mazoUseCase;
 
+    /**
+     *Obtenemos todos los jugadores, la aplanamos y la transformamos con flatmap
+     * para a cada jugador setttear el mazo, haciendo uso del metodo mazoUseCase.crearMazo()
+     * coleccionamos y cada jugador lo agregamos al nuevo juego, finalmente guardamos en bd.
+     * @return
+     */
     public Mono<Juego> crearJuego() {
         return jugadorRepository
                 .findAll()
@@ -37,21 +43,39 @@ public class JuegoUseCase {
     }
 
     /**
-     * Obtener el ganador de la ronda, de las cartas en juego
-     * quien tiene la mayor valor y retornar ese jugador.
+     * Metodo que obtiene un ganador del juego, se busca el juego por
+     * id, se obtiene la lista de jugadores y se obtiene el max
+     *
+     * @param idJuego id para buscar el juego en bd
+     * @return jugador con puntaje mas alto.
      */
     public Mono<Jugador> obtenerGanadorJuego(String idJuego) {
+
+        return juegoRepository.findById(idJuego).map(juego -> juego.getJugadores().stream()
+                  .max(Comparator.comparing(Jugador::getPuntaje)).get());
+
+        /*
         return jugadorRepository.findAll().collectList()
                 .map(jugadors -> jugadors.stream()
                         .max(Comparator.comparing(Jugador::getPuntaje)).get());
 
+         */
     }
 
-    public Mono<Juego> retirarse(String id, String idJuego) {
+    /**
+     * Metodo que elimina un jugador del juego, obtenemos el juego por id,
+     * luego obtenemos la lista de jugadores, luego filtramos por idJugador
+     * y removemos de la lista; finalmente guardamos en bd.
+     *
+     * @param idJugador jugador a ser eliminado
+     * @param idJuego idJuego
+     * @return juego actualizado.
+     */
+    public Mono<Juego> retirarse(String idJugador, String idJuego) {
         return juegoRepository.findById(idJuego).map(juego -> {
             Jugador jugador = juego.getJugadores()
                     .stream()
-                    .filter(jugador1 -> jugador1.getId().equals(id)).findFirst().get();
+                    .filter(jugador1 -> jugador1.getId().equals(idJugador)).findFirst().get();
 
             juego.getJugadores()
                     .remove(jugador);

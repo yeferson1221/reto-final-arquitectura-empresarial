@@ -14,6 +14,14 @@ public class MazoUseCase {
     private final CartaRepository cartaRepository;
     private final MazoRepository mazoRepository;
 
+    /**
+     * Obtenemos todas las cartas las coleecionamos, sobre la lista cartas
+     * aplicamos el shuffle que permite mezclar los elementos,
+     * creamos un map para transformar y obtener una sublist de 5 elementos,
+     * finalmente construimos un mazo y agregamos las cartas y la cantidad y ud id
+     * generado aleatoriamente.
+     * @return
+     */
     public Mono<Mazo> crearMazo() {
         return cartaRepository.findAll() // nos d flux de cartas
                 .collectList() // mono de lista de cartas

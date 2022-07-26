@@ -16,7 +16,9 @@ import java.util.Map;
 @NoArgsConstructor
 public class TableroDocument {
     private String id;
-    private Map<String,String> carta;
+    private String idjugador;
+    private String idcarta;
     private Integer tiempo;
     private String ronda;
+    private String idJuego;
 }
