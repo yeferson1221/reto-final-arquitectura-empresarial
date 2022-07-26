@@ -22,7 +22,6 @@ public class MazoUseCase {
                     return cartas;
                 }) // retornar ordenado
                 .map(cartas -> cartas.subList(0, 5)) // traigame solo 5 utilizando metodo sublist
-
                 .map(cartas -> Mazo.builder().baraja(cartas).cantidad(5).id(String.valueOf(Math.random())).build()); // construir un mazo
     }
 
