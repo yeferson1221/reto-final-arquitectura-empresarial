@@ -18,5 +18,6 @@ public class RouterRestJugador {
                 .andRoute(GET("/api/jugador"), handlerJugador::listarJugadorUseCase)
                 .andRoute(GET("/api/jugador/{id}"), handlerJugador::listarPorIdUseCase)
                 .andRoute(POST("/api/jugador/{id}"), handlerJugador::actualizarJugadorUseCase);
+
     }
 }

@@ -22,4 +22,8 @@ export class JugadorService {
     return this.http.get(this.url + id);
   }
 
+  optenerJugador(): Observable<any> {
+    return this.http.get(this.url);
+  }
+
 }
