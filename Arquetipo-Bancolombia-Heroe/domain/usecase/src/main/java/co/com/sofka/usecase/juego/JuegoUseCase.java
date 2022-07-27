@@ -52,17 +52,18 @@ public class JuegoUseCase {
      */
     public Mono<Jugador> obtenerGanadorJuego(String idJuego) {
 
+        /*
         return juegoRepository.findById(idJuego)
                 .map(juego -> juego.getJugadores().stream()
                         .max(Comparator.comparing(Jugador::getPuntaje))
                         .get());
+        */
 
-        /*
         return jugadorRepository.findAll().collectList()
                 .map(jugadors -> jugadors.stream()
                         .max(Comparator.comparing(Jugador::getPuntaje)).get());
 
-         */
+
     }
 
     /**

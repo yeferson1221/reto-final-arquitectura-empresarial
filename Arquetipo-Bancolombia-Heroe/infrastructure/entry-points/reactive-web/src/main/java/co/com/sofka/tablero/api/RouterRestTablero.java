@@ -15,6 +15,7 @@ public class RouterRestTablero {
     public RouterFunction<ServerResponse> routerFunctionTablero(HandlerTablero handlerTablero) {
         return route(POST("/api/tablero"), handlerTablero::crearTableroUseCase)
                 .andRoute(GET("/api/tablero"), handlerTablero::listarTableroUseCase)
+                .andRoute(GET("/api/tableroapuesta/"), handlerTablero::listarTableroUseCase)
                 .andRoute(GET("/api/tablero/{idronda}/{idjuego}"), handlerTablero::obtenerGanadorRonda);
     }
 }
