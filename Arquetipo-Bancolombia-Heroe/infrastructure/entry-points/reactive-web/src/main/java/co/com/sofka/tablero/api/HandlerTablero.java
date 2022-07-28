@@ -28,7 +28,13 @@ public class HandlerTablero {
                 .body(tableroUseCase.listarTablero(), Tablero.class);
     }
 
+    public Mono<ServerResponse> eliminarTableroPorIdUseCase(ServerRequest serverRequest) {
+        var idTablero = serverRequest.pathVariable("idTablero");
 
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(tableroUseCase.eliminarPorId(idTablero), Tablero.class);
+    }
 
     public Mono<ServerResponse> obtenerGanadorRonda(ServerRequest serverRequest) {
         var idRonda = serverRequest.pathVariable("idronda");

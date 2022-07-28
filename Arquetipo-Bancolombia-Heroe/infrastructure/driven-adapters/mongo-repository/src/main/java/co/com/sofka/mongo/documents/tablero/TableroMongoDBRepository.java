@@ -1,6 +1,5 @@
 package co.com.sofka.mongo.documents.tablero;
 
-import co.com.sofka.model.juego.Juego;
 import co.com.sofka.model.tablero.Tablero;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;

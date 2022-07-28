@@ -36,6 +36,10 @@ public class TableroUseCase {
         return tableroRepository.findById(idJuego);
     }
 
+    public Mono<Void> eliminarPorId(String idTablero) {
+        return tableroRepository.deleteById(idTablero);
+    }
+
     /**
      * ColletList espera hasta que se complete el flujo y los colelcciona.
      * .get() extraer el valor del optional.
@@ -50,7 +54,7 @@ public class TableroUseCase {
                 .collectList()
                 .map(cartas -> cartas.stream().max(Comparator.comparing(Carta::getValor)).get())
                 .flatMap(carta -> tableroRepository.buscarTableroIdJuegoIdRondaIdcarta(idJuego, idRonda, carta.getId()))
-                .flatMap(tablero -> jugadorRepository.findById(tablero.getIdjugador()));
-
+                .flatMap(tablero -> jugadorRepository.findById(tablero.getIdjugador()))
+                .map(jugador -> jugador.toBuilder().puntaje(10).build());
     }
 }
