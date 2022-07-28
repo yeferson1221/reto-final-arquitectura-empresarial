@@ -36,6 +36,6 @@ public class HandlerTablero {
 
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(tableroUseCase.obtenerGanadorRonda(idRonda,idJuego), Jugador.class);
+                .body(tableroUseCase.jugarTablero(idRonda,idJuego), Jugador.class);
     }
 }

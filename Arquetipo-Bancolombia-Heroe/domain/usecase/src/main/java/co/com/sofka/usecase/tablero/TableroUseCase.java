@@ -15,6 +15,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -30,8 +31,26 @@ public class TableroUseCase {
 
     public Mono<Tablero> crearTablero(Tablero tablero) {
         //cuando se guarda verificar si estan todas las apuesas
+        return juegoRepository.findById(tablero.getIdJuego())
+                .map(juego -> {
+                    List<Jugador> jugadores = juego.getJugadores().stream()
+                            .filter(jugador -> jugador.getId().equals(tablero.getIdjugador()))
+                            .map(jugador -> {
+                                Carta c = jugador.getMazo().getBaraja()
+                                        .stream()
+                                        .filter(carta -> carta.getId().equals(tablero.getIdcarta()))
+                                        .findFirst()
+                                        .get();
+                                jugador.getMazo().getBaraja().remove(c);
 
-        return tableroRepository.save(tablero);
+                                return jugador;
+
+                            }).collect(Collectors.toList());
+                    List<Jugador> tmp = juego.getJugadores().stream().filter(jugador -> !jugador.getId().equals(tablero.getIdjugador()))
+                            .collect(Collectors.toList());
+                    jugadores.addAll(tmp);
+                    return juego.toBuilder().jugadores(jugadores).build();
+                }).flatMap(juegoRepository::save).thenReturn(tablero).flatMap(tableroRepository::save);
     }
 
     public Flux<Tablero> listarTablero() {
@@ -42,7 +61,7 @@ public class TableroUseCase {
         return tableroRepository.findById(idJuego);
     }
 
-    public Mono<Juego> apostar(String idRonda, String idJuego) {
+    public Mono<Juego> jugarTablero(String idRonda, String idJuego) {
 
         return juegoRepository.findById(idJuego)
                 .zipWith(obtenerGanadorRonda(idRonda, idJuego))
