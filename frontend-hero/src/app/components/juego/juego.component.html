@@ -1,0 +1,36 @@
+<div class="container">
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Jugador</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ dataUser?.email }}</td>
+
+            </tr>
+            <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" obtenerJuego()" (click)=" obtenerMazo() ">Play</button>
+
+        </tbody>
+    </table>
+
+
+    <app-tablero></app-tablero>
+
+
+    <h2>mazo {{ dataUser?.email }}</h2>
+    <div *ngIf="barajas.length > 0" class="cards" (click)=" apostarCarta()">
+
+        <figure *ngFor="let baraja of barajas" class="card">
+
+            <img [src]=baraja.uri class="img-carta">
+
+            <figcaption>PODER {{baraja.valor}} {{baraja.nombre}}</figcaption>
+
+        </figure>
+        <button type="button" class="btn btn-outline-primary me-2 btn-lg">Play</button>
+
+    </div>
+</div>

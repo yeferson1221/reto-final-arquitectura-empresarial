@@ -1,0 +1,17 @@
+<div class="wrapper ">
+
+    <h2>Tablero</h2>
+
+    <div class="cards">
+
+        <figure *ngFor="let tablero of tableros" class="card">
+
+            <img [src]=tablero.uri class="img-carta">
+
+            <figcaption>PODER {{tablero}} </figcaption>
+
+        </figure>
+
+    </div>
+
+</div>
