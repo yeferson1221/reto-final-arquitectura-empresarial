@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginUsuario = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-    
+
     })
     console.log (this.loginUsuario)
   }
