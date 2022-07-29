@@ -25,6 +25,10 @@ public class JuegoUseCase {
         return juegoRepository.findAll();
     }
 
+    public Mono<Juego> listarJuedoId(String id){
+        return juegoRepository.findById(id);
+    }
+
     /**
      * Obtenemos todos los jugadores, la aplanamos y la transformamos con flatmap
      * para a cada jugador setttear el mazo, haciendo uso del metodo mazoUseCase.crearMazo()

@@ -20,6 +20,7 @@ public class MazoUseCase {
      * creamos un map para transformar y obtener una sublist de 5 elementos,
      * finalmente construimos un mazo y agregamos las cartas y la cantidad y ud id
      * generado aleatoriamente.
+     *
      * @return
      */
     public Mono<Mazo> crearMazo() {
@@ -29,9 +30,10 @@ public class MazoUseCase {
                     Collections.shuffle(cartas); // lo que hago es mapear  se aplica shuffle barajar
                     return cartas;
                 })
-                .map(cartas -> cartas.subList(0, 5))
+                .map(cartas -> cartas.subList(0, 1))
                 .map(cartas -> Mazo.builder().baraja(cartas).cantidad(cartas.size()).id(String.valueOf(Math.random()))
-                        .build()); // construir un mazo
+                        .build())
+                .flatMap(mazoRepository::save); // construir un mazo
     }
 
     public Flux<Mazo> listarMazo() {

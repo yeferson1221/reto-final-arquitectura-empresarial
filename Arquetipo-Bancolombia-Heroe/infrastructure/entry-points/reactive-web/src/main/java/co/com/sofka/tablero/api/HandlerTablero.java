@@ -15,6 +15,12 @@ import reactor.core.publisher.Mono;
 public class HandlerTablero {
     private final TableroUseCase tableroUseCase;
 
+    public Mono<ServerResponse> deleteTableroUseCase(ServerRequest serverRequest) {
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON) // expone la respuesta en formato json depende dle mediatype
+                .body(tableroUseCase.deleteTablero(), Tablero.class);
+    }
+
     public Mono<ServerResponse> crearTableroUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Tablero.class)
                 .flatMap(tablero -> ServerResponse.ok()

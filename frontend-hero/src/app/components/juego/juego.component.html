@@ -3,7 +3,7 @@
     <table class="table table-striped mt-3">
         <thead>
             <tr>
-                <th scope="col">Jugador</th>
+                <th scope="col">Jugador sala ivitado</th>
             </tr>
         </thead>
         <tbody>
@@ -11,7 +11,7 @@
                 <td>{{ dataUser?.email }}</td>
 
             </tr>
-            <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" obtenerJuego()" (click)=" obtenerMazo() ">Play</button>
+            <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)=" optenerJugador()">Play</button>
 
         </tbody>
     </table>
@@ -21,16 +21,16 @@
 
 
     <h2>mazo {{ dataUser?.email }}</h2>
-    <div *ngIf="barajas.length > 0" class="cards" (click)=" apostarCarta()">
+    <div *ngFor="let juego of juegos" class="cards">
 
-        <figure *ngFor="let baraja of barajas" class="card">
+        <figure class="card" (click)=" apostarCarta(jugadores[0].id, barajas[0].id, barajas[0].uri, juego.id)">
 
-            <img [src]=baraja.uri class="img-carta">
+            <img [src]=barajas[0].uri class="img-carta">
 
-            <figcaption>PODER {{baraja.valor}} {{baraja.nombre}}</figcaption>
+            <figcaption>PODER {{barajas[0].valor}} {{barajas[0].nombre}}</figcaption>
 
         </figure>
-        <button type="button" class="btn btn-outline-primary me-2 btn-lg">Play</button>
 
     </div>
+
 </div>

@@ -1,1 +1,35 @@
-<p>juego-sala works!</p>
+<div class="container">
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Jugador</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ dataUser?.email }}</td>
+
+            </tr>
+            <button type="button" class="btn btn-outline-primary me-2 btn-lg" (click)="optenerJugador()">Play</button>
+
+        </tbody>
+    </table>
+
+
+    <app-tablero></app-tablero>
+
+
+    <h2>mazo {{ dataUser?.email }}</h2>
+    <div *ngFor="let juego of juegos" class="cards">
+
+        <figure class="card" (click)=" apostarCarta(jugadores[1].id, barajas[0].id, barajas[0].uri, juego.id)">
+
+            <img [src]=barajas[0].uri class="img-carta">
+
+            <figcaption>PODER {{barajas[0].valor}} {{barajas[0].nombre}}</figcaption>
+
+        </figure>
+
+    </div>
+</div>

@@ -25,6 +25,7 @@ import { JuegoComponent } from './components/juego/juego.component';
 import { TableroComponent } from './components/tablero/tablero.component';
 import { RecargaDirective } from './directives/recarga.directive';
 import { JuegoSalaComponent } from './components/juego-sala/juego-sala.component';
+import { GanadorRondaComponent } from './components/ganador-ronda/ganador-ronda.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { JuegoSalaComponent } from './components/juego-sala/juego-sala.component
     JuegoComponent,
     TableroComponent,
     RecargaDirective,
-    JuegoSalaComponent
+    JuegoSalaComponent,
+    GanadorRondaComponent
   ],
   imports: [
     BrowserModule,

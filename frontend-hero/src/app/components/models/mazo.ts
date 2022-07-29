@@ -4,7 +4,7 @@ export class Mazo {
     baraja: Carta[];
     cantidad: number;
 
-    constructor(baraja:[], cantidad: number){
+    constructor(baraja: Carta[], cantidad: number){
         this.baraja = baraja;
         this.cantidad = cantidad;
 

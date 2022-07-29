@@ -22,6 +22,10 @@ public class TableroUseCase {
 
     private final CartaUseCase cartaUseCase;
 
+    public Flux<Tablero> deleteTablero() {
+        return tableroRepository.delateAll();
+    }
+
     public Mono<Tablero> crearTablero(Tablero tablero) {
         //cuando se guarda verificar si estan todas las apuesas
 

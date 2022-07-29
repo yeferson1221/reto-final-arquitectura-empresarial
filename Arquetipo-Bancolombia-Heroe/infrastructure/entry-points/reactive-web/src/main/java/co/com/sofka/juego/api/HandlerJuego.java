@@ -21,7 +21,14 @@ public class HandlerJuego {
     public Mono<ServerResponse> listarJuegoUseCase(ServerRequest serverRequest){
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(juegoUseCase.listarJuego(), Carta.class);
+                .body(juegoUseCase.listarJuego(), Juego.class);
+    }
+
+    public Mono<ServerResponse> listarJuegoIdUseCase(ServerRequest serverRequest){
+        var id = serverRequest.pathVariable("idjuego");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(juegoUseCase.listarJuedoId(id), Juego.class);
     }
 
     public Mono<ServerResponse> crearJuegoUseCase(ServerRequest serverRequest) {

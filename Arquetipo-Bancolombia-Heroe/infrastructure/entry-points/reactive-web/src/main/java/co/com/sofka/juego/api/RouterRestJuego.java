@@ -19,7 +19,8 @@ public class RouterRestJuego {
                 .andRoute(GET("api/juego/lista"), handlerJuego::listarJuegoUseCase)
                 .andRoute(GET("api/ganadorjuego/{idjuego}"), handlerJuego::obtenerGanadorJuego)
                 .andRoute(DELETE("api/juego/{idjugador}/{idjuego}"), handlerJuego::retirarseUseCase)
-                .andRoute(GET("api/juego/{idRonda}"), handlerJuego::aumentaRondaUseCase);
+                .andRoute(GET("api/juego/{idRonda}"), handlerJuego::aumentaRondaUseCase)
+                .andRoute(GET("api/juego/buscar/{idjuego}"), handlerJuego::listarJuegoIdUseCase);
 
     }
 }
